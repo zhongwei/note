@@ -2,38 +2,33 @@
 ** Git
       - git rm -r --cached .
 ** Docker
-      - Docker config in Ubuntu ::
-          #+BEGIN_VERSE  
-              sudo mkdir -p /etc/docker
-              sudo tee /etc/docker/daemon.json <<-'EOF'
-              {
-                "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
-              }
-              EOF
-              sudo systemctl daemon-reload
-              sudo systemctl restart docker
-          #+END_VERSE  
-      - cAdvisor ::
-          #+BEGIN_VERSE  
-              docker container run --name cAdvisor --restart always 
-                  -v /:/rootfs:ro \
-                  -v /var/run:/var/run:rw \ 
-                  -v /sys:/sys:ro \
-                  -v /var/lib/docker/:/var/lib/docker:ro \
-                  -p 9191:8080 -d google/cadvisor
-          #+END_VERSE  
-      - portainer ::
-          #+BEGIN_VERSE  
-              docker container run --name portainer --restart always \
-                  -v /var/run/docker.sock:/var/run/docker.sock \
-                  -p 9000:9000 -d portainer/portainer
-          #+END_VERSE  
-      - ctop ::
-          #+BEGIN_VERSE  
-              docker container run --rm -it --name=ctop \
-                  -v /var/run/docker.sock:/var/run/docker.sock \
-                  quay.io/vektorlab/ctop
-          #+END_VERSE  
+      - Docker config in Ubuntu 
+      sudo mkdir -p /etc/docker
+      sudo tee /etc/docker/daemon.json <<-'EOF'
+      {
+          "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
+      }
+      EOF
+      sudo systemctl daemon-reload
+      sudo systemctl restart docker
+
+      - cAdvisor 
+      docker container run --name cAdvisor --restart always 
+          -v /:/rootfs:ro \
+          -v /var/run:/var/run:rw \ 
+          -v /sys:/sys:ro \
+          -v /var/lib/docker/:/var/lib/docker:ro \
+          -p 9191:8080 -d google/cadvisor
+
+      - portainer 
+      docker container run --name portainer --restart always \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -p 9000:9000 -d portainer/portainer
+
+      - ctop 
+      docker container run --rm -it --name=ctop \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          quay.io/vektorlab/ctop
 ** Vim
 *** Vim web sites
        - http://www.vimgolf.com
@@ -154,10 +149,8 @@
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
       - plantuml
-          #+BEGIN_VERSE  
-              M-x org-toggle-inline-images
-              SPC m ,
-          #+END_VERSE
+      M-x org-toggle-inline-images
+      SPC m ,
       
           #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
               title 时序图
@@ -184,10 +177,8 @@
               Alice -> Alice: 给自己发消息
           #+END_SRC
       - graphviz
-          #+BEGIN_VERSE  
-              M-x org-toggle-inline-images
-              SPC m ,
-          #+END_VERSE
+      M-x org-toggle-inline-images
+      SPC m ,
       
           #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
               digraph G {
