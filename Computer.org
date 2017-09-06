@@ -1,3 +1,4 @@
+#+OPTIONS: toc:2  ^:nil author:nil num:2
 * Tools
 ** Git
       - git rm -r --cached .
