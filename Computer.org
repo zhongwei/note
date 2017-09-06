@@ -1,8 +1,8 @@
 * Tools
 ** Git
-       - git rm -r --cached .
+      - git rm -r --cached .
 ** Docker
-       - Docker config in Ubuntu
+      - Docker config in Ubuntu ::
           sudo mkdir -p /etc/docker
           sudo tee /etc/docker/daemon.json <<-'EOF'
           {
@@ -11,11 +11,11 @@
           EOF
           sudo systemctl daemon-reload
           sudo systemctl restart docker
-       - cAdvisor
+      - cAdvisor ::
           docker container run --name cAdvisor --restart always -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys:ro -v /var/lib/docker/:/var/lib/docker:ro -p 9191:8080 -d google/cadvisor
-       - portainer
+      - portainer ::
           docker container run --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -p 9000:9000 -d portainer/portainer
-       - ctop
+      - ctop ::
           docker container run --rm -ti --name=ctop  -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop
 ** Vim
 *** Vim web sites
@@ -136,7 +136,7 @@
        - :source two-space-indent.vim :: Import config file
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
-       - plantuml
+      - plantuml
            M-x org-toggle-inline-images
            SPC m ,
               #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
@@ -163,7 +163,7 @@
 
               Alice -> Alice: 给自己发消息
               #+END_SRC
-       - graphviz
+      - graphviz
            M-x org-toggle-inline-images
            SPC m ,
               #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
@@ -212,12 +212,12 @@
       2. sudo adduser zhongwei sudo
       3. sudo uerdel -r zhongwei 
 ** Ubuntu ZSH OH-MY-ZSH Powerline
-      sudo apt-get install zsh
-      sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-      https://github.com/justjanne/powerline-go
-      sudo apt-get install fonts-powerline
-      echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
+      1. sudo apt-get install zsh
+      2. sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      3. https://github.com/justjanne/powerline-go
+      4. sudo apt-get install fonts-powerline
+      5. echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
 ** Ubuntu zsh-syntax-highlighting
-      sudo apt-get install zsh-syntax-highlighting
-      #add end of .zshrc
-      source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      1. sudo apt-get install zsh-syntax-highlighting
+      2. #add end of .zshrc
+      3. source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
