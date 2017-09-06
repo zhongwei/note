@@ -3,20 +3,37 @@
       - git rm -r --cached .
 ** Docker
       - Docker config in Ubuntu ::
-          sudo mkdir -p /etc/docker
-          sudo tee /etc/docker/daemon.json <<-'EOF'
-          {
-            "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
-          }
-          EOF
-          sudo systemctl daemon-reload
-          sudo systemctl restart docker
+          #+BEGIN_VERSE  
+              sudo mkdir -p /etc/docker
+              sudo tee /etc/docker/daemon.json <<-'EOF'
+              {
+                "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
+              }
+              EOF
+              sudo systemctl daemon-reload
+              sudo systemctl restart docker
+          #+END_VERSE  
       - cAdvisor ::
-          docker container run --name cAdvisor --restart always -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys:ro -v /var/lib/docker/:/var/lib/docker:ro -p 9191:8080 -d google/cadvisor
+          #+BEGIN_VERSE  
+              docker container run --name cAdvisor --restart always 
+                  -v /:/rootfs:ro \
+                  -v /var/run:/var/run:rw \ 
+                  -v /sys:/sys:ro \
+                  -v /var/lib/docker/:/var/lib/docker:ro \
+                  -p 9191:8080 -d google/cadvisor
+          #+END_VERSE  
       - portainer ::
-          docker container run --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -p 9000:9000 -d portainer/portainer
+          #+BEGIN_VERSE  
+              docker container run --name portainer --restart always \
+                  -v /var/run/docker.sock:/var/run/docker.sock \
+                  -p 9000:9000 -d portainer/portainer
+          #+END_VERSE  
       - ctop ::
-          docker container run --rm -ti --name=ctop  -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop
+          #+BEGIN_VERSE  
+              docker container run --rm -it --name=ctop \
+                  -v /var/run/docker.sock:/var/run/docker.sock \
+                  quay.io/vektorlab/ctop
+          #+END_VERSE  
 ** Vim
 *** Vim web sites
        - http://www.vimgolf.com
@@ -137,9 +154,12 @@
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
       - plantuml
-           M-x org-toggle-inline-images
-           SPC m ,
-              #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
+          #+BEGIN_VERSE  
+              M-x org-toggle-inline-images
+              SPC m ,
+          #+END_VERSE
+      
+          #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
               title 时序图
 
               == 鉴权阶段 ==
@@ -162,11 +182,14 @@
               == 状态显示 ==
 
               Alice -> Alice: 给自己发消息
-              #+END_SRC
+          #+END_SRC
       - graphviz
-           M-x org-toggle-inline-images
-           SPC m ,
-              #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
+          #+BEGIN_VERSE  
+              M-x org-toggle-inline-images
+              SPC m ,
+          #+END_VERSE
+      
+          #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
               digraph G {
                 size="8,6"
                 ratio=expand
@@ -205,7 +228,7 @@
                   opserver -> client3
                 }
               }
-              #+end_src
+          #+END_SRC
 * Linux Administration
 ** Ubuntu user admin
       1. sudo useradd zhongwei
