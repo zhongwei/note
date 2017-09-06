@@ -1,0 +1,223 @@
+* Tools
+** Git
+       - git rm -r --cached .
+** Docker
+       - Docker config in Ubuntu
+          sudo mkdir -p /etc/docker
+          sudo tee /etc/docker/daemon.json <<-'EOF'
+          {
+            "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
+          }
+          EOF
+          sudo systemctl daemon-reload
+          sudo systemctl restart docker
+       - cAdvisor
+          docker container run --name cAdvisor --restart always -v /:/rootfs:ro -v /var/run:/var/run:rw -v /sys:/sys:ro -v /var/lib/docker/:/var/lib/docker:ro -p 9191:8080 -d google/cadvisor
+       - portainer
+          docker container run --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -p 9000:9000 -d portainer/portainer
+       - ctop
+          docker container run --rm -ti --name=ctop  -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop
+** Vim
+*** Vim web sites
+       - http://www.vimgolf.com
+       - http://www.Vimcasts.org
+*** Normal mode   
+       - <C-r> :: Redo
+       - aw, iw, ap :: A word, inner word, a paragraph
+       - * :: Serch word
+       - >G :: Indent from current to end of file (can't work in evil)
+       - I :: Insert text before first non-blank
+       - S :: Delete lines and start insert
+       - s = cl :: Delete left character and into insert mode
+       - <ESC> O replcace <CR> :: Split action to minor action
+       - <C-a>, <C-x> :: Add,subtract num
+       - g~<CR>, gU<CR>, gu<CR> :: Make text switch case,uppercase,lowercase
+       - ~, g~w :: Letter, word uppercase lowercase switch
+       - =G :: Auto indent from current line to end line
+       - <C-w>, <C-h> :: Delete a word,char in inert mode
+       - <C-v>u2699 :: Output ⚙ if installed powerline fonts, can't work in spacemacs
+       - <C-k>18 :: Output ⅛
+       - R :: Replace mode
+       - gR :: Virtual replcace
+       - o (v mode) :: Return start point at viusal mode
+       - <C-v>jj$ :: Select two lines to end of line
+       - >,<,= :: Right,left,auto shift line
+*** Visual mode
+       - v, V, <C-v> :: Visual mode for character,line,block
+       - Vr- :: Replace whole line with -
+       - vit, vat, vi}, viw :: Visually select i[nside] a[ll,round] the '{}', t[ag], a w[ord]
+       - gv :: Previous visual area
+*** Ex command 
+       - :h +feature-list :: Show list of feature
+       - :h . :: Help for dot
+       - :h ex-cmd-index :: Ex command list
+       - :h cmdline-special :: Special ex command help 
+       - :[range]delete [x] :: The range string will be deleted and save in register x
+       - :[range]yank [x] :: The range string will be copy and save in register x
+       - :% = :1,$ :: All lines of the file
+       - :'<,'>p :: Print the highlighting line, '< the start line, '> the ned line
+       - :/<html>/+1,/<\/html>/-1p :: Select without <html> and </html>
+       - :t, m :: t = copy = co, m = move
+       - :%normal i// :: Comment all lines. It will move the cursor to first character of the line at normal mode
+       - :@:, <C-o> :: Repeat ex command, undo ex command
+       - :colorscheme <C-d> :: Complete command
+       - :<C-r><C-w> :: Paste highlighting word in ex command line
+       - q/, q:, :<C-f> :: Open ex command window
+       - :read !{cmd}, :write !{cmd} :: Read cmd output to buffer, write buffer to cmd
+       - :2,$!sort -t',' -k2 :: Call ex command to sort the select area
+*** Files management
+       - :ar :: Args list of vim]
+       - :sav filename :: Saveas filename
+       - ls :: List file list in the buffer. %a active file, #h hidden file, + has been modified
+       - bn = bnext :: Next buffer
+       - :qa, :wa, :e[dit] :: Exit all windows, write all windows, restore file from disk
+       - :args **/*.* :: Add files to args list
+       - :args `cat .chapters` :: Add files in .chapters to args list
+       - :next, previous :: Switch the file in the args list
+       - <C-w>s, <C-w>v :: Horizontal, virtical split window
+       - :sp[lit] {file}, :vsp[lit] {file} :: Horizontal, virtical split window and open file
+       - :clo[se],:on[ly] :: Close current window, only reserver current window
+       - <C-w>c, <C-w>o :: Close current window, only reserver current window
+       - <C-w>|, <C-w>_ :: Maximize window hight, width
+       - :lcd {path} :: Change current path for current window
+       - :windo lcd {path} :: Change all windows current path
+       - :tabnew :: Open new tab
+       - :tabe[dit] {filename} :: Open file in a new tab
+       - <C-w>T :: Move current window to new tab
+       - tabc[lose], tabo[nly] :: Close current tab, close other tabs
+       - :tabn[ext] {N} = {N}gt, :tabp[revious] = gT :: Next, previous tab
+       - :tabm[ove] {N} :: Move tab to after tab page {N}
+       - :edit<Tab> :: List files in currrent directory, use tab key to switch
+       - :set path+=app/** :: Set find path
+       - :find :: Find file in path
+       - :E[xplore], Sexplore, Vexplore :: Open netrw explore window, split horizontal, split vertical
+       - <C-^> :: Switch the netrw window and file buffer
+*** Move and jump
+       - :h motion.txt :: Help for motion
+       - g[j,k] :: Move screen line
+       - e, ge :: Move to end of word and opposite direction
+       - w, b, e, ge <=> W, B, E, gE :: Word <=> String
+       - ;, , :: Repeat latest f, t, F or T, opposite
+       - v, / :: You can use search command at visual mode
+       - :h text-objects :: Help for text-objects
+       - cit, ci" :: Change text object in tag , "
+       - iw, aw, iW, aW :: Current word, word and space, string, string and space
+       - daw, ciw :: Delete a word and space, chang a word
+       - mm, `m:: Set mark, return mark
+       - mM `M :: m add uppercase letter is a global mark
+       - <C-o> = `` :: Temporarily switch to normal mode at insert mode
+       - <C-o> = `` :: Back to the previous position at normal mode
+       - <C-i> :: Jump forward
+       - ju[mps] :: Print the jump list
+       - changes :: Print the change list
+       - g;, g, :: Go to older, newer position in change list
+       - gf :: Go to file
+*** Register
+       - "ayiw :: Yank word to register a
+       - "bdd :: Delete current line and save to register b
+       - d[elete] c :: Delete line to register c
+       - ""p = p :: "" is default register
+       - "0, "1, "_, "+ = "*, "% :: Yank register, delete register, black hole register, system clipboard, current filename register
+       - <C-r>0 :: Paste string from register 0 at insert mode
+       - <C-r>=6*35<CR> :: Insert result of calc at inert mode
+       - qa, qA:: Record, append macro to register a
+       - reg a :: Show recorded actions in register a
+       - @a, @@ :: Play actions in register a, repeat latest playing
+*** Pattern
+       - \c, \C :: Switch ignorecase at search mode
+       - \v, \V :: Switch regexp at search mode
+       - \zs, \ze :: Narrow the search
+       - /, ? :: Search forward, search backward
+       - :%s/content/copy/gc :: You must confirm every time
+*** Others
+       - :h option-list :: Set options
+       - :set [no]ignorecase[!,?,&] :: ! = ~, ? = query status, & = default value
+       - :set tabstop=2 :: Tab stop = 2
+       - :source two-space-indent.vim :: Import config file
+       - :edit $MYVIMRC :: Edit .vimrc
+** Spacemacs
+       - plantuml
+           M-x org-toggle-inline-images
+           SPC m ,
+              #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
+              title 时序图
+
+              == 鉴权阶段 ==
+
+              Alice -> Bob: 请求
+              Bob -> Alice: 应答
+
+              == 数据上传 ==
+
+              Alice -> Bob: 上传数据
+              note left: 这是显示在左边的备注
+
+              Bob --> Canny: 转交数据
+              ... 不超过 5 秒钟 ...
+              Canny --> Bob: 状态返回
+              note right: 这是显示在右边的备注
+
+              Bob -> Alice: 状态返回
+
+              == 状态显示 ==
+
+              Alice -> Alice: 给自己发消息
+              #+END_SRC
+       - graphviz
+           M-x org-toggle-inline-images
+           SPC m ,
+              #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
+              digraph G {
+                size="8,6"
+                ratio=expand
+                edge [dir=both]
+                plcnet [shape=box, label="PLC 网络"]
+                subgraph cluster_wrapline {
+                  label="Wrapline Control System"
+                  color=purple
+                  subgraph {
+                  rank=same
+                  exec
+                  sharedmem [style=filled, fillcolor=lightgrey, shape=box]
+                  }
+                  edge[style=dotted, dir=none]
+                  exec -> opserver
+                  exec -> db
+                  plc -> exec
+                  edge [style=line, dir=both]
+                  exec -> sharedmem
+                  sharedmem -> db
+                  plc -> sharedmem
+                  sharedmem -> opserver
+                }
+                plcnet -> plc [constraint=false]
+                millwide [shape=box, label="Millwide System"]
+                db -> millwide
+
+                subgraph cluster_opclients {
+                  color=blue
+                  label="Operator Clients"
+                  rankdir=LR
+                  labelloc=b
+                  node[label=client]
+                  opserver -> client1
+                  opserver -> client2
+                  opserver -> client3
+                }
+              }
+              #+end_src
+* Linux Administration
+** Ubuntu user admin
+      1. sudo useradd zhongwei
+      2. sudo adduser zhongwei sudo
+      3. sudo uerdel -r zhongwei 
+** Ubuntu ZSH OH-MY-ZSH Powerline
+      sudo apt-get install zsh
+      sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      https://github.com/justjanne/powerline-go
+      sudo apt-get install fonts-powerline
+      echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
+** Ubuntu zsh-syntax-highlighting
+      sudo apt-get install zsh-syntax-highlighting
+      #add end of .zshrc
+      source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
