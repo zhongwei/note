@@ -1,9 +1,38 @@
-#+OPTIONS: toc:2  ^:nil author:nil num:2
+#+TITLE: Computer Notebook
+* Table of contents                                                     :TOC:
+- [[#tools][Tools]]
+  - [[#git][Git]]
+    - [[#remove-from-stage][Remove from stage]]
+  - [[#docker][Docker]]
+    - [[#config-in-ubuntu][Config in Ubuntu]]
+    - [[#cadvisor][cAdvisor]]
+    - [[#portainer][portainer]]
+    - [[#ctop][ctop]]
+  - [[#vim][Vim]]
+    - [[#vim-web-sites][Vim web sites]]
+    - [[#normal-mode][Normal mode]]
+    - [[#visual-mode][Visual mode]]
+    - [[#ex-command][Ex command]]
+    - [[#files-management][Files management]]
+    - [[#move-and-jump][Move and jump]]
+    - [[#register][Register]]
+    - [[#pattern][Pattern]]
+    - [[#others][Others]]
+  - [[#spacemacs][Spacemacs]]
+    - [[#plantuml][plantuml]]
+    - [[#graphviz][graphviz]]
+- [[#linux-administration][Linux Administration]]
+  - [[#ubuntu-user-admin][Ubuntu user admin]]
+  - [[#ubuntu-zsh-oh-my-zsh-powerline][Ubuntu ZSH OH-MY-ZSH Powerline]]
+  - [[#ubuntu-zsh-syntax-highlighting][Ubuntu zsh-syntax-highlighting]]
+- [[#linux-programming][Linux Programming]]
+
 * Tools
 ** Git
+*** Remove from stage
       - git rm -r --cached .
 ** Docker
-      - Docker config in Ubuntu 
+*** Config in Ubuntu 
       sudo mkdir -p /etc/docker
       sudo tee /etc/docker/daemon.json <<-'EOF'
       {
@@ -13,7 +42,7 @@
       sudo systemctl daemon-reload
       sudo systemctl restart docker
 
-      - cAdvisor 
+*** cAdvisor 
       docker container run --name cAdvisor --restart always 
           -v /:/rootfs:ro \
           -v /var/run:/var/run:rw \ 
@@ -21,12 +50,12 @@
           -v /var/lib/docker/:/var/lib/docker:ro \
           -p 9191:8080 -d google/cadvisor
 
-      - portainer 
+*** portainer 
       docker container run --name portainer --restart always \
           -v /var/run/docker.sock:/var/run/docker.sock \
           -p 9000:9000 -d portainer/portainer
 
-      - ctop 
+*** ctop 
       docker container run --rm -it --name=ctop \
           -v /var/run/docker.sock:/var/run/docker.sock \
           quay.io/vektorlab/ctop
@@ -149,7 +178,7 @@
        - :source two-space-indent.vim :: Import config file
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
-      - plantuml
+*** plantuml
       M-x org-toggle-inline-images
       SPC m ,
       
@@ -177,7 +206,7 @@
 
               Alice -> Alice: 给自己发消息
           #+END_SRC
-      - graphviz
+*** graphviz
       M-x org-toggle-inline-images
       SPC m ,
       
@@ -236,3 +265,4 @@
       1. sudo apt-get install zsh-syntax-highlighting
       2. #add end of .zshrc
       3. source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+* Linux Programming
