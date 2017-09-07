@@ -33,27 +33,33 @@
       - git rm -r --cached .
 ** Docker
 *** Config in Ubuntu 
-      sudo mkdir -p /etc/docker
-      sudo tee /etc/docker/daemon.json <<-'EOF'
-      {
-          "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
-      }
-      EOF
-      sudo systemctl daemon-reload
-      sudo systemctl restart docker
+      #+BEGIN_SRC shell
+          sudo mkdir -p /etc/docker
+          sudo tee /etc/docker/daemon.json <<-'EOF'
+          {
+              "registry-mirrors": ["https://3tn3zipt.mirror.aliyuncs.com"]
+          }
+          EOF
+          sudo systemctl daemon-reload
+          sudo systemctl restart docker
+      #+END_SRC
 
 *** cAdvisor 
-      docker container run --name cAdvisor --restart always 
-          -v /:/rootfs:ro \
-          -v /var/run:/var/run:rw \ 
-          -v /sys:/sys:ro \
-          -v /var/lib/docker/:/var/lib/docker:ro \
-          -p 9191:8080 -d google/cadvisor
+      #+BEGIN_SRC shell
+          docker container run --name cAdvisor --restart always 
+              -v /:/rootfs:ro \
+              -v /var/run:/var/run:rw \ 
+              -v /sys:/sys:ro \
+              -v /var/lib/docker/:/var/lib/docker:ro \
+              -p 9191:8080 -d google/cadvisor
+      #+END_SRC
 
 *** portainer 
-      docker container run --name portainer --restart always \
-          -v /var/run/docker.sock:/var/run/docker.sock \
-          -p 9000:9000 -d portainer/portainer
+      #+BEGIN_SRC shell
+          docker container run --name portainer --restart always \
+              -v /var/run/docker.sock:/var/run/docker.sock \
+              -p 9000:9000 -d portainer/portainer
+      #+END_SRC
 
 *** ctop 
       docker container run --rm -it --name=ctop \
@@ -179,77 +185,80 @@
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
 *** plantuml
-      M-x org-toggle-inline-images
-      SPC m ,
+      #+BEGIN_SRC shell
+          M-x org-toggle-inline-images
+          SPC m ,
+      #+END_SRC
       
-          #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
-              title 时序图
+      #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
+          title 时序图
 
-              == 鉴权阶段 ==
+          == 鉴权阶段 ==
 
-              Alice -> Bob: 请求
-              Bob -> Alice: 应答
+          Alice -> Bob: 请求
+          Bob -> Alice: 应答
 
-              == 数据上传 ==
+          == 数据上传 ==
 
-              Alice -> Bob: 上传数据
-              note left: 这是显示在左边的备注
+          Alice -> Bob: 上传数据
+          note left: 这是显示在左边的备注
 
-              Bob --> Canny: 转交数据
-              ... 不超过 5 秒钟 ...
-              Canny --> Bob: 状态返回
-              note right: 这是显示在右边的备注
+          Bob --> Canny: 转交数据
+          ... 不超过 5 秒钟 ...
+          Canny --> Bob: 状态返回
+          note right: 这是显示在右边的备注
 
-              Bob -> Alice: 状态返回
+          Bob -> Alice: 状态返回
 
-              == 状态显示 ==
+          == 状态显示 ==
 
-              Alice -> Alice: 给自己发消息
-          #+END_SRC
+          Alice -> Alice: 给自己发消息
+      #+END_SRC
 *** graphviz
-      M-x org-toggle-inline-images
-      SPC m ,
-      
-          #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
-              digraph G {
-                size="8,6"
-                ratio=expand
-                edge [dir=both]
-                plcnet [shape=box, label="PLC 网络"]
-                subgraph cluster_wrapline {
-                  label="Wrapline Control System"
-                  color=purple
-                  subgraph {
-                  rank=same
-                  exec
-                  sharedmem [style=filled, fillcolor=lightgrey, shape=box]
-                  }
-                  edge[style=dotted, dir=none]
-                  exec -> opserver
-                  exec -> db
-                  plc -> exec
-                  edge [style=line, dir=both]
-                  exec -> sharedmem
-                  sharedmem -> db
-                  plc -> sharedmem
-                  sharedmem -> opserver
-                }
-                plcnet -> plc [constraint=false]
-                millwide [shape=box, label="Millwide System"]
-                db -> millwide
-
-                subgraph cluster_opclients {
-                  color=blue
-                  label="Operator Clients"
-                  rankdir=LR
-                  labelloc=b
-                  node[label=client]
-                  opserver -> client1
-                  opserver -> client2
-                  opserver -> client3
-                }
+      #+BEGIN_SRC shell
+          M-x org-toggle-inline-images
+          SPC m ,
+      #+END_SRC
+      #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
+          digraph G {
+            size="8,6"
+            ratio=expand
+            edge [dir=both]
+            plcnet [shape=box, label="PLC 网络"]
+            subgraph cluster_wrapline {
+              label="Wrapline Control System"
+              color=purple
+              subgraph {
+              rank=same
+              exec
+              sharedmem [style=filled, fillcolor=lightgrey, shape=box]
               }
-          #+END_SRC
+              edge[style=dotted, dir=none]
+              exec -> opserver
+              exec -> db
+              plc -> exec
+              edge [style=line, dir=both]
+              exec -> sharedmem
+              sharedmem -> db
+              plc -> sharedmem
+              sharedmem -> opserver
+            }
+            plcnet -> plc [constraint=false]
+            millwide [shape=box, label="Millwide System"]
+            db -> millwide
+
+            subgraph cluster_opclients {
+              color=blue
+              label="Operator Clients"
+              rankdir=LR
+              labelloc=b
+              node[label=client]
+              opserver -> client1
+              opserver -> client2
+              opserver -> client3
+            }
+          }
+      #+END_SRC
 * Linux Administration
 ** Ubuntu user admin
       1. sudo useradd zhongwei
