@@ -1,15 +1,5 @@
 #+TITLE: Computer Notebook
 * Table of contents                                                     :TOC:
-- [[#tools][Tools]]
-  - [[#git][Git]]
-    - [[#remove-from-stage][Remove from stage]]
-  - [[#docker][Docker]]
-    - [[#config-in-ubuntu][Config in Ubuntu]]
-    - [[#cadvisor][cAdvisor]]
-    - [[#portainer][portainer]]
-    - [[#ctop][ctop]]
-  - [[#vim][Vim]]
-    - [[#vim-web-sites][Vim web sites]]
     - [[#normal-mode][Normal mode]]
     - [[#visual-mode][Visual mode]]
     - [[#ex-command][Ex command]]
@@ -18,6 +8,25 @@
     - [[#register][Register]]
     - [[#pattern][Pattern]]
     - [[#others][Others]]
+- [[#tools][Tools]]
+  - [[#git][Git]]
+    - [[#remove-from-stage][Remove from stage]]
+  - [[#docker][Docker]]
+    - [[#config-in-ubuntu][Config in Ubuntu]]
+    - [[#cadvisor][cAdvisor]]
+    - [[#portainer][portainer]]
+    - [[#ctop][ctop]]
+    - [[#tensorflow-notebook][Tensorflow notebook]]
+  - [[#vim][Vim]]
+    - [[#vim-web-sites][Vim web sites]]
+    - [[#normal-mode-1][Normal mode]]
+    - [[#visual-mode-1][Visual mode]]
+    - [[#ex-command-1][Ex command]]
+    - [[#files-management-1][Files management]]
+    - [[#move-and-jump-1][Move and jump]]
+    - [[#register-1][Register]]
+    - [[#pattern-1][Pattern]]
+    - [[#others-1][Others]]
   - [[#spacemacs][Spacemacs]]
     - [[#plantuml][plantuml]]
     - [[#graphviz][graphviz]]
@@ -25,6 +34,123 @@
   - [[#ubuntu-user-admin][Ubuntu user admin]]
   - [[#ubuntu-zsh-oh-my-zsh-powerline][Ubuntu ZSH OH-MY-ZSH Powerline]]
   - [[#ubuntu-zsh-syntax-highlighting][Ubuntu zsh-syntax-highlighting]]
+- [[#linux-programming][Linux Programming]]
+
+*** Normal mode   
+       - <C-r> :: Redo
+       - aw, iw, ap :: A word, inner word, a paragraph
+       - * :: Serch word
+       - >G :: Indent from current to end of file (can't work in evil)
+       - I :: Insert text before first non-blank
+       - S :: Delete lines and start insert
+       - s = cl :: Delete left character and into insert mode
+       - <ESC> O replcace <CR> :: Split action to minor action
+       - <C-a>, <C-x> :: Add,subtract num
+       - g~<CR>, gU<CR>, gu<CR> :: Make text switch case,uppercase,lowercase
+       - ~, g~w :: Letter, word uppercase lowercase switch
+       - =G :: Auto indent from current line to end line
+       - <C-w>, <C-h> :: Delete a word,char in inert mode
+       - <C-v>u2699 :: Output ⚙ if installed powerline fonts, can't work in spacemacs
+       - <C-k>18 :: Output ⅛
+       - R :: Replace mode
+       - gR :: Virtual replcace
+       - o (v mode) :: Return start point at viusal mode
+       - <C-v>jj$ :: Select two lines to end of line
+       - >,<,= :: Right,left,auto shift line
+*** Visual mode
+       - v, V, <C-v> :: Visual mode for character,line,block
+       - Vr- :: Replace whole line with -
+       - vit, vat, vi}, viw :: Visually select i[nside] a[ll,round] the '{}', t[ag], a w[ord]
+       - gv :: Previous visual area
+*** Ex command 
+       - :h +feature-list :: Show list of feature
+       - :h . :: Help for dot
+       - :h ex-cmd-index :: Ex command list
+       - :h cmdline-special :: Special ex command help 
+       - :[range]delete [x] :: The range string will be deleted and save in register x
+       - :[range]yank [x] :: The range string will be copy and save in register x
+       - :% = :1,$ :: All lines of the file
+       - :'<,'>p :: Print the highlighting line, '< the start line, '> the ned line
+       - :/<html>/+1,/<\/html>/-1p :: Select without <html> and </html>
+       - :t, m :: t = copy = co, m = move
+       - :%normal i// :: Comment all lines. It will move the cursor to first character of the line at normal mode
+       - :@:, <C-o> :: Repeat ex command, undo ex command
+       - :colorscheme <C-d> :: Complete command
+       - :<C-r><C-w> :: Paste highlighting word in ex command line
+       - q/, q:, :<C-f> :: Open ex command window
+       - :read !{cmd}, :write !{cmd} :: Read cmd output to buffer, write buffer to cmd
+       - :2,$!sort -t',' -k2 :: Call ex command to sort the select area
+*** Files management
+       - :ar :: Args list of vim]
+       - :sav filename :: Saveas filename
+       - ls :: List file list in the buffer. %a active file, #h hidden file, + has been modified
+       - bn = bnext :: Next buffer
+       - :qa, :wa, :e[dit] :: Exit all windows, write all windows, restore file from disk
+       - :args **/*.* :: Add files to args list
+       - :args `cat .chapters` :: Add files in .chapters to args list
+       - :next, previous :: Switch the file in the args list
+       - <C-w>s, <C-w>v :: Horizontal, virtical split window
+       - :sp[lit] {file}, :vsp[lit] {file} :: Horizontal, virtical split window and open file
+       - :clo[se],:on[ly] :: Close current window, only reserver current window
+       - <C-w>c, <C-w>o :: Close current window, only reserver current window
+       - <C-w>|, <C-w>_ :: Maximize window hight, width
+       - :lcd {path} :: Change current path for current window
+       - :windo lcd {path} :: Change all windows current path
+       - :tabnew :: Open new tab
+       - :tabe[dit] {filename} :: Open file in a new tab
+       - <C-w>T :: Move current window to new tab
+       - tabc[lose], tabo[nly] :: Close current tab, close other tabs
+       - :tabn[ext] {N} = {N}gt, :tabp[revious] = gT :: Next, previous tab
+       - :tabm[ove] {N} :: Move tab to after tab page {N}
+       - :edit<Tab> :: List files in currrent directory, use tab key to switch
+       - :set path+=app/** :: Set find path
+       - :find :: Find file in path
+       - :E[xplore], Sexplore, Vexplore :: Open netrw explore window, split horizontal, split vertical
+       - <C-^> :: Switch the netrw window and file buffer
+*** Move and jump
+       - :h motion.txt :: Help for motion
+       - g[j,k] :: Move screen line
+       - e, ge :: Move to end of word and opposite direction
+       - w, b, e, ge <=> W, B, E, gE :: Word <=> String
+       - ;, , :: Repeat latest f, t, F or T, opposite
+       - v, / :: You can use search command at visual mode
+       - :h text-objects :: Help for text-objects
+       - cit, ci" :: Change text object in tag , "
+       - iw, aw, iW, aW :: Current word, word and space, string, string and space
+       - daw, ciw :: Delete a word and space, chang a word
+       - mm, `m:: Set mark, return mark
+       - mM `M :: m add uppercase letter is a global mark
+       - <C-o> = `` :: Temporarily switch to normal mode at insert mode
+       - <C-o> = `` :: Back to the previous position at normal mode
+       - <C-i> :: Jump forward
+       - ju[mps] :: Print the jump list
+       - changes :: Print the change list
+       - g;, g, :: Go to older, newer position in change list
+       - gf :: Go to file
+*** Register
+       - "ayiw :: Yank word to register a
+       - "bdd :: Delete current line and save to register b
+       - d[elete] c :: Delete line to register c
+       - ""p = p :: "" is default register
+       - "0, "1, "_, "+ = "*, "% :: Yank register, delete register, black hole register, system clipboard, current filename register
+       - <C-r>0 :: Paste string from register 0 at insert mode
+       - <C-r>=6*35<CR> :: Insert result of calc at inert mode
+       - qa, qA:: Record, append macro to register a
+       - reg a :: Show recorded actions in register a
+       - @a, @@ :: Play actions in register a, repeat latest playing
+*** Pattern
+       - \c, \C :: Switch ignorecase at search mode
+       - \v, \V :: Switch regexp at search mode
+       - \zs, \ze :: Narrow the search
+       - /, ? :: Search forward, search backward
+       - :%s/content/copy/gc :: You must confirm every time
+*** Others
+       - :h option-list :: Set options
+       - :set [no]ignorecase[!,?,&] :: ! = ~, ? = query status, & = default value
+       - :set tabstop=2 :: Tab stop = 2
+       - :source two-space-indent.vim :: Import config file
+       - :edit $MYVIMRC :: Edit .vimrc
+*h-syntax-highlighting]]
 - [[#linux-programming][Linux Programming]]
 
 * Tools
@@ -46,7 +172,7 @@
 
 *** cAdvisor 
       #+BEGIN_SRC shell
-          docker container run --name cAdvisor --restart always 
+          docker container run --name cAdvisor --restart always \
               -v /:/rootfs:ro \
               -v /var/run:/var/run:rw \ 
               -v /sys:/sys:ro \
@@ -62,9 +188,17 @@
       #+END_SRC
 
 *** ctop 
-      docker container run --rm -it --name=ctop \
-          -v /var/run/docker.sock:/var/run/docker.sock \
-          quay.io/vektorlab/ctop
+      #+BEGIN_SRC shell
+          docker container run --rm -it --name=ctop \
+              -v /var/run/docker.sock:/var/run/docker.sock \
+              quay.io/vektorlab/ctop
+      #+END_SRC
+*** Tensorflow notebook
+      #+BEGIN_SRC shell
+          docker run --name tensorflow-notebook  -p 8888:8888 -d \
+              -v ~/Jupyter:/home/jovyan \
+              jupyter/tensorflow-notebook
+      #+END_SRC
 ** Vim
 *** Vim web sites
        - http://www.vimgolf.com
@@ -219,6 +353,7 @@
           M-x org-toggle-inline-images
           SPC m ,
       #+END_SRC
+      
       #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
           digraph G {
             size="8,6"
