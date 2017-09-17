@@ -28,6 +28,8 @@
     - [[#pattern-1][Pattern]]
     - [[#others-1][Others]]
   - [[#spacemacs][Spacemacs]]
+    - [[#generate-graph][Generate graph]]
+    - [[#gnuplot][gnuplot]]
     - [[#plantuml][plantuml]]
     - [[#graphviz][graphviz]]
 - [[#linux-administration][Linux Administration]]
@@ -318,13 +320,54 @@
        - :source two-space-indent.vim :: Import config file
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
-*** plantuml
+*** Generate graph
       #+BEGIN_SRC shell
-          M-x org-toggle-inline-images
-          SPC m ,
+          ,Ti :: M-x org-toggle-inline-images
+          ,,  :: SPC m ,
       #+END_SRC
-      
-      #+BEGIN_SRC plantuml :results graphics :file ~/future/tmp/uml-sample.png :cmdline -charset UTF-8
+*** gnuplot
+       #+BEGIN_SRC gnuplot :exports code :file ./images/file.png
+          reset
+
+          set title "Putting it All Together"
+
+          set xlabel "X"
+          set xrange [-8:8]
+          set xtics -8,2,8
+
+
+          set ylabel "Y"
+          set yrange [-20:70]
+          set ytics -20,10,70
+
+          f(x) = x**2
+          g(x) = x**3
+          h(x) = 10*sqrt(abs(x))
+
+          plot f(x) w lp lw 1, g(x) w p lw 2, h(x) w l lw 3
+      #+END_SRC
+
+      #+RESULTS:
+      [[file:./images/file.png]]
+
+
+      #+PLOT:  type:grid map:t title:"org mode"
+        | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+        | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+        | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+        | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 0 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 1 | 1 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 0 |
+        | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 1 | 0 |
+        | 0 | 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | 0 |
+        | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+        | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+*** plantuml
+      #+BEGIN_SRC plantuml :results graphics :file ./images/uml-sample.png :cmdline -charset UTF-8
           title 时序图
 
           == 鉴权阶段 ==
@@ -348,13 +391,12 @@
 
           Alice -> Alice: 给自己发消息
       #+END_SRC
+
+      #+RESULTS:
+      [[file:./images/uml-sample.png]]
+
 *** graphviz
-      #+BEGIN_SRC shell
-          M-x org-toggle-inline-images
-          SPC m ,
-      #+END_SRC
-      
-      #+BEGIN_SRC dot :file ~/future/tmp/graphviz-sample.png :cmdline -Kdot -Tpng
+      #+BEGIN_SRC dot :file ./images/graphviz-sample.png :cmdline -Kdot -Tpng
           digraph G {
             size="8,6"
             ratio=expand
@@ -394,6 +436,12 @@
             }
           }
       #+END_SRC
+
+      #+RESULTS:
+      [[file:./images/graphviz-sample.png]]
+
+
+
 * Linux Administration
 ** Ubuntu user admin
       1. sudo useradd zhongwei
