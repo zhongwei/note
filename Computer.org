@@ -339,7 +339,7 @@
           set ylabel "Y"
           set yrange [-20:70]
           set ytics -20,10,70
-
+          
           f(x) = x**2
           g(x) = x**3
           h(x) = 10*sqrt(abs(x))
@@ -396,6 +396,64 @@
       [[file:./images/uml-sample.png]]
 
 *** graphviz
+        #+BEGIN_SRC dot :file ./images/dot-sample1.png :cmdline -Kdot -Tpng
+            graph sampe1 {
+                a--b--c
+                b--d[color=blue]
+            }
+        #+END_SRC  
+
+        #+RESULTS:
+        [[file:./images/dot-sample1.png]]
+
+        
+        #+BEGIN_SRC dot :file ./images/dot-sample2.png :cmdline -Kdot -Tpng
+            digraph sample2 {
+                d[shape=box]
+                a->b->c
+                b->d
+            }
+        #+END_SRC
+
+        #+RESULTS:
+        [[file:./images/dot-sample2.png]]
+        
+        #+BEGIN_SRC dot :file ./images/dot-sample3.png :cmdline -Kdot -Tpng
+            digraph sample3 {
+                a->{b c};
+                c->e;
+                b->d;
+                
+                subgraph cluster_bc {
+                    bgcolor=red;
+                    b;
+                    c;
+                }
+            }
+        #+END_SRC
+
+        #+RESULTS:
+        [[file:./images/dot-sample3.png]]
+        
+        #+BEGIN_SRC dot :file ./images/dot-sample4.png :cmdline -Kdot -Tpng
+            digraph sample4 {
+                rankdir=LR
+                g[label="Github"]
+                j[label="Jenkins"]
+                t[label="Testing"]
+                p[label="Production"]
+
+                g->j[label="Trigger"]
+                j->t[label="Build"]
+                t->p[label="Approved"] 
+            }
+        
+        #+END_SRC
+
+        #+RESULTS:
+        [[file:./images/dot-sample4.png]]
+
+   
       #+BEGIN_SRC dot :file ./images/graphviz-sample.png :cmdline -Kdot -Tpng
           digraph G {
             size="8,6"
@@ -439,9 +497,6 @@
 
       #+RESULTS:
       [[file:./images/graphviz-sample.png]]
-
-
-
 * Linux Administration
 ** Ubuntu user admin
       1. sudo useradd zhongwei
