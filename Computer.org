@@ -33,9 +33,16 @@
     - [[#plantuml][plantuml]]
     - [[#graphviz][graphviz]]
 - [[#linux-administration][Linux Administration]]
+  - [[#ip-replace-ifconfig][ip replace ifconfig]]
+  - [[#ss-replace-netstat][ss replace netstat]]
+  - [[#ubuntu-install-tools][Ubuntu install tools]]
+    - [[#sudo-apt-install-terminator][sudo apt install terminator]]
+    - [[#sudo-apt-install-curl][sudo apt install curl]]
+    - [[#sudo-apt-install-git][sudo apt install git]]
   - [[#ubuntu-user-admin][Ubuntu user admin]]
   - [[#ubuntu-zsh-oh-my-zsh-powerline][Ubuntu ZSH OH-MY-ZSH Powerline]]
   - [[#ubuntu-zsh-syntax-highlighting][Ubuntu zsh-syntax-highlighting]]
+  - [[#ubuntu-guest-network-config][Ubuntu guest network config]]
 - [[#linux-programming][Linux Programming]]
 
 *** Normal mode   
@@ -956,23 +963,101 @@ digraph G {
             }
           }
       #+END_SRC
-
+      
       #+RESULTS:
       [[file:./images/graphviz-sample.png]]
 
 * Linux Administration
+  
+** ip replace ifconfig
+    - ip address show
+    - ip link show
+    - ip link set DEVICE up
+    - ip maddress (replace ipmaddr)
+** ss replace netstat
+** Ubuntu install tools
+*** sudo apt install terminator
+*** sudo apt install curl
+*** sudo apt install git
 ** Ubuntu user admin
       1. sudo useradd zhongwei
       2. sudo adduser zhongwei sudo
       3. sudo uerdel -r zhongwei 
 ** Ubuntu ZSH OH-MY-ZSH Powerline
-      1. sudo apt-get install zsh
+      1. sudo apt install zsh
       2. sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-      3. https://github.com/justjanne/powerline-go
-      4. sudo apt-get install fonts-powerline
+      3. https://github.com/powerline/fonts ./insall.sh
+      4. https://github.com/ryanoasis/nerd-fonts ./install.sh
       5. echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
+      6. https://github.com/justjanne/powerline-go
+      7. git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+      8. You then need to select this theme in your ~/.zshrc: 
+         ZSH_THEME="powerlevel9k/powerlevel9k"
+      
+         POWERLEVEL9K_MODE="awesome-fontconfig"
+
+          POWERLEVEL9K_FOLDER_ICON=""
+          POWERLEVEL9K_HOME_SUB_ICON="$(print_icon "HOME_ICON")"
+          POWERLEVEL9K_DIR_PATH_SEPARATOR=" $(print_icon "LEFT_SUBSEGMENT_SEPARATOR") "
+
+          POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+
+          POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=true
+
+          POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='black'
+          POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='178'
+          POWERLEVEL9K_NVM_BACKGROUND="238"
+          POWERLEVEL9K_NVM_FOREGROUND="green"
+          POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="blue"
+          POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="015"
+
+          POWERLEVEL9K_TIME_BACKGROUND='255'
+          #POWERLEVEL9K_COMMAND_TIME_FOREGROUND='gray'
+          POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='245'
+          POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='black'
+
+          POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
+          POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir dir_writable vcs)
+          POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
+          POWERLEVEL9K_SHOW_CHANGESET=true
+       
+      10. https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config
+      11. sudo chmod 755 powerline-go-linux-amd64
+      12. sudo mv powerline-go-linux-amd64 /usr/bin/powerline-go
+      #+BEGIN_SRC 
+          function powerline_precmd() {
+              PS1="$(powerline-go -error $? -shell zsh)"
+          }
+
+          function install_powerline_precmd() {
+            for s in "${precmd_functions[@]}"; do
+              if [ "$s" = "powerline_precmd" ]; then
+                return
+              fi
+            done
+            precmd_functions+=(powerline_precmd)
+          }
+
+          if [ "$TERM" != "linux" ]; then
+              install_powerline_precmd
+          fi
+      #+END_SRC
 ** Ubuntu zsh-syntax-highlighting
-      1. sudo apt-get install zsh-syntax-highlighting
+      1. sudo apt install zsh-syntax-highlighting
       2. #add end of .zshrc
       3. source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+** Ubuntu guest network config
+   virtualbox network config: Adapter 1 - Host-only Adapter, Adapter 2 - NAT
+   /etc/network/intferfaces
+   # interfaces(5) file used by ifup(8) and ifdown(8)
+    auto lo
+    iface lo inet loopback
+
+    auto enp0s3
+    iface enp0s3 inet static
+    address 192.168.99.100
+    netmask 255.255.255.0
+
+    auto enp0s8
+    iface enp0s8 inet dhcp
 * Linux Programming
