@@ -15,6 +15,9 @@
     - [[#config-in-ubuntu][Config in Ubuntu]]
     - [[#cadvisor][cAdvisor]]
     - [[#portainer][portainer]]
+    - [[#redis][redis]]
+    - [[#rabbitmq][RabbitMQ]]
+    - [[#registry][registry]]
     - [[#ctop][ctop]]
     - [[#tensorflow-notebook][Tensorflow notebook]]
   - [[#vim][Vim]]
@@ -44,6 +47,8 @@
   - [[#ubuntu-zsh-syntax-highlighting][Ubuntu zsh-syntax-highlighting]]
   - [[#ubuntu-guest-network-config][Ubuntu guest network config]]
 - [[#linux-programming][Linux Programming]]
+- [[#rust-language-programming][Rust Language Programming]]
+  - [[#install][Install]]
 
 *** Normal mode   
        - <C-r> :: Redo
@@ -194,6 +199,23 @@
           docker container run --name portainer --restart always \
               -v /var/run/docker.sock:/var/run/docker.sock \
               -p 9000:9000 -d portainer/portainer
+      #+END_SRC
+      
+*** redis 
+      #+BEGIN_SRC shell
+          docker run --name redis -p 6379:6379 -d redis:alpine
+      
+      #+END_SRC
+      
+*** RabbitMQ 
+     #+BEGIN_SRC shell
+         docker run -d --hostname rabbitmq --name rabbitmq \
+             -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=zhongwei \
+             -e RABBITMQ_DEFAULT_PASS=zhongwei rabbitmq:management-alpine
+     #+END_SRC
+*** registry 
+      #+BEGIN_SRC shell
+          docker run -d -p 5000:5000 --restart always --name registry registry
       #+END_SRC
 
 *** ctop 
@@ -1061,3 +1083,17 @@ digraph G {
     auto enp0s8
     iface enp0s8 inet dhcp
 * Linux Programming
+* Rust Language Programming
+** Install
+   export LC_ALL=C
+   export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+   export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+   curl -sSf https://mirrors.ustc.edu.cn/rust-static/rustup.sh | sh -s -- --channel=nightly
+
+   .cargo/config 
+    [source.crates-io]
+    replace-with = 'ustc'
+
+    [source.ustc]
+    registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+    # registry = "https://mirrors.ustc.edu.cn/crates.io-index"
