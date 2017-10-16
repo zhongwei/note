@@ -16,6 +16,7 @@
     - [[#cadvisor][cAdvisor]]
     - [[#portainer][portainer]]
     - [[#redis][redis]]
+    - [[#nginx][nginx]]
     - [[#rabbitmq][RabbitMQ]]
     - [[#registry][registry]]
     - [[#ctop][ctop]]
@@ -204,6 +205,16 @@
 *** redis 
       #+BEGIN_SRC shell
           docker run --name redis -p 6379:6379 -d redis:alpine
+      
+      #+END_SRC
+      
+*** nginx 
+      #+BEGIN_SRC shell
+        # Dockerfile
+        # FROM nginx
+        # COPY static-html-directory /usr/share/nginx/html
+        docker build -t static-content .
+        docker run --name static-content -d -p 8080:80 static-content 
       
       #+END_SRC
       
