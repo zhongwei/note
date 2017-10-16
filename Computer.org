@@ -212,6 +212,7 @@
       #+BEGIN_SRC shell
         # Dockerfile
         # FROM nginx
+        # COPY nginx.conf /etc/nginx/nginx.conf
         # COPY static-html-directory /usr/share/nginx/html
         docker build -t static-content .
         docker run --name static-content -d -p 8080:80 static-content 
