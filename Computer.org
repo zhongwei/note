@@ -12,6 +12,7 @@
   - [[#git][Git]]
     - [[#remove-from-stage][Remove from stage]]
   - [[#docker][Docker]]
+    - [[#docker-update---restartalways-container-id][docker update --restart=always <CONTAINER ID>]]
     - [[#config-in-ubuntu][Config in Ubuntu]]
     - [[#cadvisor][cAdvisor]]
     - [[#portainer][portainer]]
@@ -173,6 +174,10 @@
 *** Remove from stage
       - git rm -r --cached .
 ** Docker
+*** docker update --restart=always <CONTAINER ID> 
+     - no (default)
+     - on-failure
+     - unless-stopped
 *** Config in Ubuntu 
       #+BEGIN_SRC shell
           sudo mkdir -p /etc/docker
