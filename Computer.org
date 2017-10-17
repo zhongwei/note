@@ -12,7 +12,7 @@
   - [[#git][Git]]
     - [[#remove-from-stage][Remove from stage]]
   - [[#docker][Docker]]
-    - [[#docker-update---restartalways-container-id][docker update --restart=always <CONTAINER ID>]]
+    - [[#docker-container-update---restartalways-container-id][docker container update --restart=always <CONTAINER ID>]]
     - [[#config-in-ubuntu][Config in Ubuntu]]
     - [[#cadvisor][cAdvisor]]
     - [[#portainer][portainer]]
@@ -22,6 +22,7 @@
     - [[#registry][registry]]
     - [[#ctop][ctop]]
     - [[#tensorflow-notebook][Tensorflow notebook]]
+    - [[#gogs][Gogs]]
   - [[#vim][Vim]]
     - [[#vim-web-sites][Vim web sites]]
     - [[#normal-mode-1][Normal mode]]
@@ -174,7 +175,7 @@
 *** Remove from stage
       - git rm -r --cached .
 ** Docker
-*** docker update --restart=always <CONTAINER ID> 
+*** docker container update --restart=always <CONTAINER ID> 
      - no (default)
      - on-failure
      - unless-stopped
@@ -243,9 +244,14 @@
       #+END_SRC
 *** Tensorflow notebook
       #+BEGIN_SRC shell
-          docker run --name tensorflow-notebook  -p 8888:8888 -d \
+          docker conatainer run --name tensorflow-notebook  -p 8888:8888 -d \
               -v ~/Jupyter:/home/jovyan \
               jupyter/tensorflow-notebook
+      #+END_SRC
+*** Gogs
+      #+BEGIN_SRC shell
+          docker container run --name=gogs -p 1022:22 -p 3000:3000 \
+          -v /Users/zhongwei/POC/data/gogs:/data -d gogs/gogs
       #+END_SRC
 ** Vim
 *** Vim web sites
