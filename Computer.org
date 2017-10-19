@@ -57,6 +57,9 @@
       - git rm -r --cached .
 ** Docker
 *** /etc/docker/daemon.json
+    {
+       "insecure-registries" : [ "9.197.10.243:5000" ]
+    }
 *** docker container update --restart=always <CONTAINER ID> 
      - no (default)
      - on-failure
