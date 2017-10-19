@@ -4,6 +4,7 @@
   - [[#git][Git]]
     - [[#remove-from-stage][Remove from stage]]
   - [[#docker][Docker]]
+    - [[#etcdockerdaemonjson][/etc/docker/daemon.json]]
     - [[#docker-container-update---restartalways-container-id][docker container update --restart=always <CONTAINER ID>]]
     - [[#config-in-ubuntu][Config in Ubuntu]]
     - [[#cadvisor][cAdvisor]]
@@ -34,6 +35,7 @@
     - [[#gnuplot][gnuplot]]
     - [[#plantuml][plantuml]]
     - [[#graphviz][graphviz]]
+    - [[#registy-ui][Registy UI]]
 - [[#linux-administration][Linux Administration]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
   - [[#ss-replace-netstat][ss replace netstat]]
@@ -54,6 +56,7 @@
 *** Remove from stage
       - git rm -r --cached .
 ** Docker
+*** /etc/docker/daemon.json
 *** docker container update --restart=always <CONTAINER ID> 
      - no (default)
      - on-failure
@@ -913,6 +916,16 @@ digraph G {
       #+RESULTS:
       [[file:./images/graphviz-sample.png]]
 
+      
+*** Registy UI
+      #+BEGIN_SRC 
+          docker run  -d --name registry-ui \
+              -e ENV_DOCKER_REGISTRY_HOST=9.123.230.132 \
+              -e ENV_DOCKER_REGISTRY_PORT=5000 \
+              -p 9100:80 \
+              konradkleine/docker-registry-frontend:v2
+      
+      #+END_SRC
 * Linux Administration
   
 ** ip replace ifconfig
