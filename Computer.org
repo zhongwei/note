@@ -986,6 +986,8 @@ digraph G {
          sudo apt update
          sudo apt install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r)
          sudo /media/cdrom/VBoxLinuxAdditions.run 
+         
+         sudo adduser zhongwei vboxsf -> reboot -> cd /media/sf_xxxx
      #+END_SRC
 ** Ubuntu guest network config NetworkManager(<17.10)
    /usr/lib/systemd/network <  /etc/systemd/network
