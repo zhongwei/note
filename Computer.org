@@ -966,6 +966,14 @@ digraph G {
 ** Ubuntu netplan
       [[file:./images/netplan_design_overview.png]]
     /etc/netplan/*.yaml 
+      network:
+      version: 2
+      renderer: networkd
+      ethernets:
+        enp0s3:
+          dhcp4: yes
+        enp0s8:
+          addresses: [192.168.99.100/24]
     During early boot it then generates backend specific configuration files in /run
     Support: NetworkManager and systemd-networkd
     - netplan generate: Use /etc/netplan to generate the required configuration for the renderers.
