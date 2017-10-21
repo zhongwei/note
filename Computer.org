@@ -44,6 +44,7 @@
   - [[#ubuntu-reset-sudo-password][Ubuntu reset sudo password]]
   - [[#ubuntu-netplan][Ubuntu netplan]]
   - [[#ubuntu-server-install-virtualbox-guest-additions][Ubuntu Server Install Virtualbox Guest Additions]]
+  - [[#ubuntu-docker][Ubuntu Docker]]
   - [[#ubuntu-guest-network-config-networkmanager1710][Ubuntu guest network config NetworkManager(<17.10)]]
   - [[#ubuntu-guest-network-config-systemd-networkd1710][Ubuntu guest network config systemd-networkd(>=17.10)]]
   - [[#ubuntu-locale][Ubuntu locale]]
@@ -988,6 +989,11 @@ digraph G {
          sudo /media/cdrom/VBoxLinuxAdditions.run 
          
          sudo adduser zhongwei vboxsf -> reboot -> cd /media/sf_xxxx
+     #+END_SRC
+** Ubuntu Docker 
+     #+BEGIN_SRC shell
+         wget https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/docker-ce.xxxxx.deb
+         sudo dpkg -i /path/to/docker-ce.xxxxx.deb
      #+END_SRC
 ** Ubuntu guest network config NetworkManager(<17.10)
    /usr/lib/systemd/network <  /etc/systemd/network
