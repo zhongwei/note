@@ -983,6 +983,8 @@ digraph G {
      #+BEGIN_SRC shell
          Insert Guest Additions CD Images ...
          sudo mount /dev/cdrom /media/cdrom
+         sudo apt update
+         sudo apt install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r)
          sudo /media/cdrom/VBoxLinuxAdditions.run 
      #+END_SRC
 ** Ubuntu guest network config NetworkManager(<17.10)

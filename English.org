@@ -1,0 +1,325 @@
+* My English Notebook
+** Bo Bin Grammar
+*** Chapter 1 Introduction
+**** English Introduction
+**** Nature of This Book
+**** The Word Class
+***** National Word
+      - noun :: book, water
+      - pronoun :: I, you
+      - adjective :: clear, happy
+      - numeral :: four, sixty
+      - verb :: come, take
+      - adverb :: here, today, yes, no
+***** Form Word
+      - article :: a, the
+      - preposition :: of ,to
+      - conjunction :: and, or
+      - inerjection :: oh, alas
+***** Phrase
+      - phrasal verb :: get up, call on, take care of
+      - phrasal preposition :: because of, instead of
+      - phrasal conjunction :: as if, so that, as long as
+***** Subordinate Correlative
+      who, how, when
+**** Sentence Element
+***** Subject Group - Predicate Group
+       - _Professor Ward_ _teaches English to university students_.
+***** Six sentence elements
+       1) Subject
+          - The /*sun*/ is shining in our faces.
+          - /*I*/ respect his privacy.
+       2) Predicate or Predicate Verb
+          - Twilight /*was falling*/ as Martin /*left*/ the fruit store.
+          - The play began at eight, so they /*must dine*/ at seven.
+       3) Object
+          - One must endorse a /*cheque*/ before one cashes it.
+          - Thomas received a /*warning*/ for /*speeding*/.
+          - She gave a /*roar*/ of /*pain*/.
+       4) Complement and Predicative
+          - Hill was declared the /*winner*/ of the fight.
+          - I consider the book /*expensive*/.
+          - John Stuart Mill was an early /*feminist*/.
+       5) Attribute
+          - The /*whole*/ house was ill with the mumps.
+          - John had a /*great*/ desire /*to travel*/.
+          - Children /*who live by the sea*/ usually begain to swim at an early age.
+       6) Adverbial
+          - Alex did /*badly*/ on exam.
+          - Houses are /*so*/ expensive now that we /*simply*/ can't afford to buy one.
+          - /*Frankly*/, I don't think the plan will succeed.
+          - He ran up to her /*breathing heavily*/.
+          - /*As I approached*/, Reid gave me a nod of greeting.
+***** Independent Element of The Sentence
+       - -- Is it rainning?
+         -- /*No*/, it's snowing.
+       - /*Miss*/, what time is flight 452 for Boston due to depart?
+       - Karl bought /*a*/ video recorder.
+       - Where is /*the*/ Caribbean Sea?
+       - My car break down /*on*/ the highway.
+       - This fact has little significance /*for*/ us.
+       - Discussion /*and*/ debates are my favourite way of learning.
+       - You had to have a job /*or*/ go hungry.
+       - Most students in the class score eighty percent and above, /*but*/ John is the exception.
+       - Henry is afraid he'll gain weight /*if*/ he stop smoking.
+       - /*Althought*/ it was barely four o'clock, the light were already on.
+       - /*Oh*/, please don't ask me any more.
+**** The Phrase
+    1) Noun Phrase
+       - My cousin is /*a university student*/.
+       - /*Brown's formal title*/ is "Professor", but he prefers to be called "Mr".
+    2) Verb Phrase
+       - I /*can't believe*/ John has failed.
+       - The new books /*will have been entered*/ in the register before another parcel arrives.
+    3) Adjectival Phrase
+       - Her little stories are /*very charming indeed*/.
+       - The clouds soon cleared away and it became /*quite warm*/.
+    4) Adverbial Phrase
+       - Joan plays the piano /*very nicely*/.
+       - He didn't work /*hard enough*/ and so he failed the examination.
+    5) Prepostional Phrase
+       - The car is waiting /*at the gate*/.
+       - The earth goes /*round the sun*/.
+    6) Infinitive Phrase
+       - /*To eat three times a day*/ is heathy.
+       - Your job will be /*to look after the children*/. 
+    7) Gerundial Phrase
+       - /*Watching TV*/ is a pleasure.
+       - Mary's mother enjoys /*listening to music*/.
+    8) Participial Phrase
+       - The woman /*washing the dishes*/ is my aunt.
+       - /*Walking home*/, the girl was frightened by a noise.
+       - /*When formed with copper*/, aluminum alloys are quite strong.
+    9) Set Phrase
+       - Dr. Smith is to leave /*at once*/.
+**** The Clause
+    1) Subject Clause
+       - /*How this happened*/ is not clear to anyone.
+       - /*That we shall be late*/ is certain.
+    2) Predicative Clause
+       - The trouble is /*that I have lost his address*/.
+       - That is /*what he meant*/.
+    3) Object Clause
+       - The seller demanded /*that payment should be made within five days.
+       - She asked me /*which I liked best*/.
+    4) Attributive Clause
+       - A man /*who sells books in a shop*/ is called a bookseller.
+       - The man /*who I saw*/ is called Smith.
+    5) Adverbial Clause
+       - A telegram came /*after you had gone*/.
+       - The house stood /*where three roads met*/.
+       - /*If she asks me*/, I'll tell her.
+       - /*So far as I know*/, he is trustworthy.
+    6) Appositive Clause
+       - The fact /*that the money has gone*/ does not mean it was stolen.
+       - The suggestion /*that the new rule be adopted*/ came from the chairman.
+**** The Sentence
+***** Basic Structure
+       1) SV
+          - Day dawns.
+       2) SVO
+          - Ruth understands French.
+       3) SVOO
+          - He told us the whole story.
+       4) SVC/SLP
+          - He died a poor man.
+          - Tom's father is professor.
+       5) SVOC
+          - He found George intelligent.
+***** Sentence Structure
+       1) Simple Sentence
+          - Thomas Edison was born in Milan, Ohio, on February 11, 1847.
+          - Fire and water do not agree.
+          - Caroline came into the classroom and sat down.
+       2) Compound Sentence
+          - I came home early, but she remained to the end of the concert.
+       3) Complex Sentence
+          - He said he would come in the evening.
+          - While the man worked to strenthen the dam, the rain continued to fall, and the river, which was already well above its normal level, rose higher and higher.
+***** Purpose and use
+      1) Declarative Sentence
+         - The run rises in the east.
+      2) Interrogative Sentence
+         - Who is standing at the window?
+      3) Imperative Sentence
+         - Open the window, please.
+      4) Exclamatory Sentence
+         - How spotless the snow is!
+*** Chapter 2 Noun
+**** 概说
+       1. 名词的定义和特征
+          1) -s or -es
+             - Jack shruggled his /*shoulders*/.
+             - David stands six feet three /*inches*/.
+          2) article
+             - /*The chocolate*/ temporarily statisfied Ruth's /*hunger*/.
+             - /*Some substances*/ resist /*the action*/ of /*acids*/.
+          3) 固定的词序
+             - The /*organ*/ played a solemn /*music*/.
+             - The /*sun*/ evaporated the /*dew*/.
+          4) 独特的后缀
+             - -er, -or, -ment, -ness, -ion, -ity, -ance(-ence), -ure, -al
+       2. 名词的种类
+          1) Common Noun / Proper Noun
+             - _John_ is a _student_.
+             - Proper Noun :: 零冠词，首字母大写
+          2) Common Noun
+             - 类名词 :: book, table, house
+             - 集体名词 :: family, crowd, army
+             - 物质名词 :: milk, water, honey
+             - 抽象名词 :: honesty, happiness, love
+          3) 可数名词、不可数名词
+             - 类名词和集体名词大多可数 :: a girl, a chair, a horse, a family, a tree, an army
+             - 物质名词、动作和抽象名词大多不可数 :: milk, thinking, glass, anger, drinking, honesty
+          4) 简单名词、复合名词
+             - 简单名词 :: mother, opinion, society, vase, wine, work
+             - 复合名词 :: raincoat, airman, sight-seeing, walking stick, self-consciousness, woman worker
+       3. 可数名词与不可数名词的区分
+          1) 可数 :: duty, hope, experience
+          2) 不可数 :: soap
+          3) 可数 :: Two coffees, please.
+          4) 不可数 :: Do you want tea or coffee?
+       4. 专有名词
+          1) 人名
+          2) 地名
+          3) 时间名
+          4) 报刊名
+             - Time
+             - Life
+             - the Economist
+             - the New Yorker
+             - the Guardian
+             - the Washington Post
+          5) 单位团体名多含普通名词，常带定冠词。如：
+             - the Conservative Party
+             - the Central Intelligence Agency
+             - the Associated Press
+             - the British Museum
+             - the United Nations
+             - Congress
+             - Parliament
+             - Yale University
+             - Brown University
+       5. 复合名词
+          1) 构成大致有九种
+             1) 名词+名词 :: daylight, goldfish, handbag, nightdress, oil well, snowball, teapot, warhorse
+             2) 名词+动词 :: rainfall, haircut, book-keeping, horse-riding
+             3) 名词+副词 :: passer-by, hanger-on
+             4) 动词+名词 :: turntable, washing machine, punchcard, chewing gum, swimming-pool, writing desk
+             5) 动词+副词 :: break-in, make-up, take-off, warm-up
+             6) 形容词+名词 :: greenhouse, blackboard, shorthand, blueprint
+             7) 形容词+动词 :: dry-cleaning
+             8) 副词+名词 :: onlooker, bystander
+             9) 副词+动词 :: offset, outlet, income, downturn
+          2) 形式有三种(连字符无规律，需查字典)
+             1) 两部分连写 :: bookshop, motorcycle, lipstick, earrings, yearbook, tablecloth, fireplace, typewriter
+             2) 两部分用连字符连接 :: ice-cream, baby-sitter, self-control, man-eater, drive-in, air-conditioning, summing-up, go-between
+             3) 两部分分写 :: post office, toilet paper, film star, bus stop, side road, credit card, data bank, talcum powder
+          3) 重音在第一个词上
+             - a 'blackbird 以别于 a black 'bird
+             - the 'White House 以别于 the white house
+             - an 'English teacher "英语教师" 与 an English 'teacher 英国教师
+       6. 名词化(substantivization)
+          - 名词化的词类主要有下列四类
+            1) 名词化的形容词 :: rich, dumb, poor, sick, blind, Scotch
+            2) 名词化的过去分词 :: wounded, accused, unknown, beloved, outcast, firstborn
+            3) 名词化的动名词 :: feeling, suffering, thinking, writing, printing, building
+            4) 名词化的基数词、序数词 :: on all /*fours*/, in his /*sixties*/, from the /*first*/, need a /*fourth*/ in the game
+          - 其他词类及短语用作名词
+            - I am not a /*somebody*/, but a /*nobody*/.
+            - Did you enjoy your /*swim*/.
+            - Motion requires a /*here*/ and a /*there*/. 运动需要从这一点到那一点。
+            - But me no /*buts*/. 你不要和我说”但是“、”但是“了。
+          - 固定词组变成复合名词
+            - to-do 吵闹
+            - touch-me-not 含羞草
+            - well-being 幸福，福利
+            - has-been 过时的人或物
+            - might-have-been 本可成功的人或本可做到的事
+            - right-about-face 180 度大转弯
+       7. 名词的功用
+          1) 主语
+             - The /*boy*/ broke his arm yesterday.
+             - /*William wants to become a judge.
+             - A /*watermelon*/ is much sweeter than a lemon.
+          2) 宾语
+             - We lost our /*way*/.
+             - Jeanette rarely misses a football /*game*/.
+             - They've been working from /*morning*/ to /*night*/.
+          3) 补语
+             - Mark is considered a good /*officer*/
+             - The parents christened their son /*John*/.
+             - The doctor is a /*specialist*/ in diseases of heart.
+          4) 定语
+             - The /*air*/ conditioning works well.
+             - The /*ship's*/ crew stood on deck.
+             - The /*humanities*/ professor didn't give us any home-work tonight.
+          5) 同位语
+             - Marilyn Monroe, a famous movie /*star*/, committed suicide.
+             - Influenza, a common /*disease*/, has no cure.
+             - Paul Jones, the distinguished art /*critic*/, died in his sleep last night.
+          6) 状语
+             - Wait a /*moment*/!
+             - The watch costs ten /*pounds*/.
+             - We must get together again some /*day*/.
+          7) 独立成分
+             - /*Miss*/, can you give me change for a dollar?
+             - /*Martha*/, you look tired.
+             - Your /*honour*/, I found this man outside St. Andrew's church an hour ago.
+**** 名词的数
+       1. 数的含义和种类
+          1) 单数(singular)表示”一“，复数表示”多于一“ :
+             one half day, on day, one and a half days, two days, one or two days
+          2) 单形名词表示单数概念，复形名词表示复数概念，如：
+             - The /*pen*/ is mightier than the /*sword*/.
+             - Two /*heads*/ are better than one.
+          3) 数的概念与数的形式不一致
+             - Can /*man*/ be free if /*woman*/ is a slave? (单数形式表示复数）
+             - The /*barracks*/ is quite new. (复数形式表示单数)
+          4) 规则复形名词-可数名词 :: dog - dogs, book - books
+          5) 不规则复形名词-可数名词 :: foot - feet, child - children
+          6) 不规则复形名词-通形名词 :: fish, sheep
+          7) 不规则复形名词-外来词 :: creterion - creteria, bureau - bureaux
+          8) 单形不变词-普通名词 :: butter, soap, courage
+          9) 单形不变词-专有名词 :: John, James
+          10) 复形不变词-普通名词 :: scissors, trousers, clothes, arms
+          11) 复形不变词-专有名词 :: The alps, the West indies
+       2. 名词的规则复数形式
+| 构成方法   | 读音              | 例词               |
+|------------+-------------------+--------------------|
+| 在词尾加-s | 1.在清辅音后读/s/ | 1. desk - desks    |
+|            | 2.在浊辅音后读/z/ | map - maps         |
+|            |                   | boat - boats       |
+|            |                   | lake - lakes       |
+|            |                   | 2. field - fields  |
+|            |                   | dog - dogs         |
+|            |                   | sea - seas         |
+|            |                   | machine - machines |
+|------------+-------------------+--------------------|
+| 1. 在   |                   |                    |
+       4. 名词的不规则复数形式
+       5. 不可数名词的数
+       6. 集体名词的数
+       7. 专有名词的数
+       8. 名词化的词的数
+       9. 复数名词的数
+       10. 无单形的复形名词的数
+       11. 某些名词单复形的比较
+**** 名词的格
+       1. 格的含义和种类
+       2. 属格的形式
+       3. 's 属格的构成方法
+       4. 's 属格的其他用法
+       5. 's 属格所修饰名词的省略
+       6. 's 属格与通格的互用
+       7. of 属格的用法
+       8. 属格的功能
+       9. 's 属格与 of 属格的互用
+       10. 双重属格
+**** 名词的性
+       1. 性的含义和种类
+       2. 表人的名词的性
+       3. 表人的名词的双重性
+       4. 集体名词的性
+       5. 表高等动物名词的性
+       6. 表低等动物、植物和非生物的名词的性

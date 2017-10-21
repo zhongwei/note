@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-10-08 Sun 09:39 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Zhong Wei" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf22447f">1. My English Notebook</a>
+<ul>
+<li><a href="#orgda78894">1.1. Bo Bin Grammar</a>
+<ul>
+<li><a href="#orga3c1856">1.1.1. Chapter 1 Introduction</a></li>
+<li><a href="#orgf983d92">1.1.2. Chapter 2 Noun</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf22447f" class="outline-2">
+<h2 id="orgf22447f"><span class="section-number-2">1</span> My English Notebook</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgda78894" class="outline-3">
+<h3 id="orgda78894"><span class="section-number-3">1.1</span> Bo Bin Grammar</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-orga3c1856" class="outline-4">
+<h4 id="orga3c1856"><span class="section-number-4">1.1.1</span> Chapter 1 Introduction</h4>
+<div class="outline-text-4" id="text-1-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="org0d0bc59"></a>English Introduction<br /></li>
+<li><a id="org191a578"></a>Nature of This Book<br /></li>
+<li><a id="orga42469f"></a>The Word Class<br />
+<ol class="org-ol">
+<li><a id="org7678cc8"></a>National Word<br />
+<div class="outline-text-6" id="text-1-1-1-3-1">
+<dl class="org-dl">
+<dt>noun</dt><dd>book, water</dd>
+<dt>pronoun</dt><dd>I, you</dd>
+<dt>adjective</dt><dd>clear, happy</dd>
+<dt>numeral</dt><dd>four, sixty</dd>
+<dt>verb</dt><dd>come, take</dd>
+<dt>adverb</dt><dd>here, today, yes, no</dd>
+</dl>
+</div>
+</li>
+<li><a id="orge97a3eb"></a>Form Word<br />
+<div class="outline-text-6" id="text-1-1-1-3-2">
+<dl class="org-dl">
+<dt>article</dt><dd>a, the</dd>
+<dt>preposition</dt><dd>of ,to</dd>
+<dt>conjunction</dt><dd>and, or</dd>
+<dt>inerjection</dt><dd>oh, alas</dd>
+</dl>
+</div>
+</li>
+<li><a id="org80ae76b"></a>Phrase<br />
+<div class="outline-text-6" id="text-1-1-1-3-3">
+<dl class="org-dl">
+<dt>phrasal verb</dt><dd>get up, call on, take care of</dd>
+<dt>phrasal preposition</dt><dd>because of, instead of</dd>
+<dt>phrasal conjunction</dt><dd>as if, so that, as long as</dd>
+</dl>
+</div>
+</li>
+<li><a id="org41a4b10"></a>Subordinate Correlative<br />
+<div class="outline-text-6" id="text-1-1-1-3-4">
+<p>
+who, how, when
+</p>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="org7ec079c"></a>Sentence Element<br />
+<ol class="org-ol">
+<li><a id="org1171fa6"></a>Subject Group - Predicate Group<br />
+<div class="outline-text-6" id="text-1-1-1-4-1">
+<ul class="org-ul">
+<li><span class="underline">Professor Ward</span> <span class="underline">teaches English to university students</span>.</li>
+</ul>
+</div>
+</li>
+<li><a id="orga54ee91"></a>Six sentence elements<br />
+<div class="outline-text-6" id="text-1-1-1-4-2">
+<ol class="org-ol">
+<li>Subject
+<ul class="org-ul">
+<li>The <i><b>sun</b></i> is shining in our faces.</li>
+<li><i><b>I</b></i> respect his privacy.</li>
+</ul></li>
+<li>Predicate or Predicate Verb
+<ul class="org-ul">
+<li>Twilight <i><b>was falling</b></i> as Martin <i><b>left</b></i> the fruit store.</li>
+<li>The play began at eight, so they <i><b>must dine</b></i> at seven.</li>
+</ul></li>
+<li>Object
+<ul class="org-ul">
+<li>One must endorse a <i><b>cheque</b></i> before one cashes it.</li>
+<li>Thomas received a <i><b>warning</b></i> for <i><b>speeding</b></i>.</li>
+<li>She gave a <i><b>roar</b></i> of <i><b>pain</b></i>.</li>
+</ul></li>
+<li>Complement and Predicative
+<ul class="org-ul">
+<li>Hill was declared the <i><b>winner</b></i> of the fight.</li>
+<li>I consider the book <i><b>expensive</b></i>.</li>
+<li>John Stuart Mill was an early <i><b>feminist</b></i>.</li>
+</ul></li>
+<li>Attribute
+<ul class="org-ul">
+<li>The <i><b>whole</b></i> house was ill with the mumps.</li>
+<li>John had a <i><b>great</b></i> desire <i><b>to travel</b></i>.</li>
+<li>Children <i><b>who live by the sea</b></i> usually begain to swim at an early age.</li>
+</ul></li>
+<li>Adverbial
+<ul class="org-ul">
+<li>Alex did <i><b>badly</b></i> on exam.</li>
+<li>Houses are <i><b>so</b></i> expensive now that we <i><b>simply</b></i> can't afford to buy one.</li>
+<li><i><b>Frankly</b></i>, I don't think the plan will succeed.</li>
+<li>He ran up to her <i><b>breathing heavily</b></i>.</li>
+<li><i><b>As I approached</b></i>, Reid gave me a nod of greeting.</li>
+</ul></li>
+</ol>
+</div>
+</li>
+<li><a id="orgd53b63c"></a>Independent Element of The Sentence<br />
+<div class="outline-text-6" id="text-1-1-1-4-3">
+<ul class="org-ul">
+<li>&#x2013; Is it rainning?
+&#x2013; <i><b>No</b></i>, it's snowing.</li>
+<li><i><b>Miss</b></i>, what time is flight 452 for Boston due to depart?</li>
+<li>Karl bought <i><b>a</b></i> video recorder.</li>
+<li>Where is <i><b>the</b></i> Caribbean Sea?</li>
+<li>My car break down <i><b>on</b></i> the highway.</li>
+<li>This fact has little significance <i><b>for</b></i> us.</li>
+<li>Discussion <i><b>and</b></i> debates are my favourite way of learning.</li>
+<li>You had to have a job <i><b>or</b></i> go hungry.</li>
+<li>Most students in the class score eighty percent and above, <i><b>but</b></i> John is the exception.</li>
+<li>Henry is afraid he'll gain weight <i><b>if</b></i> he stop smoking.</li>
+<li><i><b>Althought</b></i> it was barely four o'clock, the light were already on.</li>
+<li><i><b>Oh</b></i>, please don't ask me any more.</li>
+</ul>
+</div>
+</li>
+</ol>
+</li>
+<li><a id="org9c63bc7"></a>The Phrase<br />
+<div class="outline-text-5" id="text-1-1-1-5">
+<ol class="org-ol">
+<li>Noun Phrase
+<ul class="org-ul">
+<li>My cousin is <i><b>a university student</b></i>.</li>
+<li><i><b>Brown's formal title</b></i> is "Professor", but he prefers to be called "Mr".</li>
+</ul></li>
+<li>Verb Phrase
+<ul class="org-ul">
+<li>I <i><b>can't believe</b></i> John has failed.</li>
+<li>The new books <i><b>will have been entered</b></i> in the register before another parcel arrives.</li>
+</ul></li>
+<li>Adjectival Phrase
+<ul class="org-ul">
+<li>Her little stories are <i><b>very charming indeed</b></i>.</li>
+<li>The clouds soon cleared away and it became <i><b>quite warm</b></i>.</li>
+</ul></li>
+<li>Adverbial Phrase
+<ul class="org-ul">
+<li>Joan plays the piano <i><b>very nicely</b></i>.</li>
+<li>He didn't work <i><b>hard enough</b></i> and so he failed the examination.</li>
+</ul></li>
+<li>Prepostional Phrase
+<ul class="org-ul">
+<li>The car is waiting <i><b>at the gate</b></i>.</li>
+<li>The earth goes <i><b>round the sun</b></i>.</li>
+</ul></li>
+<li>Infinitive Phrase
+<ul class="org-ul">
+<li><i><b>To eat three times a day</b></i> is heathy.</li>
+<li>Your job will be <i><b>to look after the children</b></i>.</li>
+</ul></li>
+<li>Gerundial Phrase
+<ul class="org-ul">
+<li><i><b>Watching TV</b></i> is a pleasure.</li>
+<li>Mary's mother enjoys <i><b>listening to music</b></i>.</li>
+</ul></li>
+<li>Participial Phrase
+<ul class="org-ul">
+<li>The woman <i><b>washing the dishes</b></i> is my aunt.</li>
+<li><i><b>Walking home</b></i>, the girl was frightened by a noise.</li>
+<li><i><b>When formed with copper</b></i>, aluminum alloys are quite strong.</li>
+</ul></li>
+<li>Set Phrase
+<ul class="org-ul">
+<li>Dr. Smith is to leave <i><b>at once</b></i>.</li>
+</ul></li>
+</ol>
+</div>
+</li>
+<li><a id="org878a61d"></a>The Clause<br />
+<div class="outline-text-5" id="text-1-1-1-6">
+<ol class="org-ol">
+<li>Subject Clause
+<ul class="org-ul">
+<li><i><b>How this happened</b></i> is not clear to anyone.</li>
+<li><i><b>That we shall be late</b></i> is certain.</li>
+</ul></li>
+<li>Predicative Clause
+<ul class="org-ul">
+<li>The trouble is <i><b>that I have lost his address</b></i>.</li>
+<li>That is <i><b>what he meant</b></i>.</li>
+</ul></li>
+<li>Object Clause
+<ul class="org-ul">
+<li>The seller demanded /*that payment should be made within five days.</li>
+<li>She asked me <i><b>which I liked best</b></i>.</li>
+</ul></li>
+<li>Attributive Clause
+<ul class="org-ul">
+<li>A man <i><b>who sells books in a shop</b></i> is called a bookseller.</li>
+<li>The man <i><b>who I saw</b></i> is called Smith.</li>
+</ul></li>
+<li>Adverbial Clause
+<ul class="org-ul">
+<li>A telegram came <i><b>after you had gone</b></i>.</li>
+<li>The house stood <i><b>where three roads met</b></i>.</li>
+<li><i><b>If she asks me</b></i>, I'll tell her.</li>
+<li><i><b>So far as I know</b></i>, he is trustworthy.</li>
+</ul></li>
+<li>Appositive Clause
+<ul class="org-ul">
+<li>The fact <i><b>that the money has gone</b></i> does not mean it was stolen.</li>
+<li>The suggestion <i><b>that the new rule be adopted</b></i> came from the chairman.</li>
+</ul></li>
+</ol>
+</div>
+</li>
+<li><a id="org94eeb30"></a>The Sentence<br />
+<ol class="org-ol">
+<li><a id="org74da71b"></a>Basic Structure<br />
+<div class="outline-text-6" id="text-1-1-1-7-1">
+<ol class="org-ol">
+<li>SV
+<ul class="org-ul">
+<li>Day dawns.</li>
+</ul></li>
+<li>SVO
+<ul class="org-ul">
+<li>Ruth understands French.</li>
+</ul></li>
+<li>SVOO
+<ul class="org-ul">
+<li>He told us the whole story.</li>
+</ul></li>
+<li>SVC/SLP
+<ul class="org-ul">
+<li>He died a poor man.</li>
+<li>Tom's father is professor.</li>
+</ul></li>
+<li>SVOC
+<ul class="org-ul">
+<li>He found George intelligent.</li>
+</ul></li>
+</ol>
+</div>
+</li>
+<li><a id="org3755d44"></a>Sentence Structure<br />
+<div class="outline-text-6" id="text-1-1-1-7-2">
+<ol class="org-ol">
+<li>Simple Sentence
+<ul class="org-ul">
+<li>Thomas Edison was born in Milan, Ohio, on February 11, 1847.</li>
+<li>Fire and water do not agree.</li>
+<li>Caroline came into the classroom and sat down.</li>
+</ul></li>
+<li>Compound Sentence
+<ul class="org-ul">
+<li>I came home early, but she remained to the end of the concert.</li>
+</ul></li>
+<li>Complex Sentence
+<ul class="org-ul">
+<li>He said he would come in the evening.</li>
+<li>While the man worked to strenthen the dam, the rain continued to fall, and the river, which was already well above its normal level, rose higher and higher.</li>
+</ul></li>
+</ol>
+</div>
+</li>
+<li><a id="orgd0f1be7"></a>Purpose and use<br />
+<div class="outline-text-6" id="text-1-1-1-7-3">
+<ol class="org-ol">
+<li>Declarative Sentence
+<ul class="org-ul">
+<li>The run rises in the east.</li>
+</ul></li>
+<li>Interrogative Sentence
+<ul class="org-ul">
+<li>Who is standing at the window?</li>
+</ul></li>
+<li>Imperative Sentence
+<ul class="org-ul">
+<li>Open the window, please.</li>
+</ul></li>
+<li>Exclamatory Sentence
+<ul class="org-ul">
+<li>How spotless the snow is!</li>
+</ul></li>
+</ol>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgf983d92" class="outline-4">
+<h4 id="orgf983d92"><span class="section-number-4">1.1.2</span> Chapter 2 Noun</h4>
+<div class="outline-text-4" id="text-1-1-2">
+</div>
+<ol class="org-ol">
+<li><a id="org572f878"></a>概说<br />
+<div class="outline-text-5" id="text-1-1-2-1">
+<ol class="org-ol">
+<li>名词的定义和特征
+<ol class="org-ol">
+<li>-s or -es
+<ul class="org-ul">
+<li>Jack shruggled his <i><b>shoulders</b></i>.</li>
+<li>David stands six feet three <i><b>inches</b></i>.</li>
+</ul></li>
+<li>article
+<ul class="org-ul">
+<li><i><b>The chocolate</b></i> temporarily statisfied Ruth's <i><b>hunger</b></i>.</li>
+<li><i><b>Some substances</b></i> resist <i><b>the action</b></i> of <i><b>acids</b></i>.</li>
+</ul></li>
+<li>固定的词序
+<ul class="org-ul">
+<li>The <i><b>organ</b></i> played a solemn <i><b>music</b></i>.</li>
+<li>The <i><b>sun</b></i> evaporated the <i><b>dew</b></i>.</li>
+</ul></li>
+<li>独特的后缀
+<ul class="org-ul">
+<li>-er, -or, -ment, -ness, -ion, -ity, -ance(-ence), -ure, -al</li>
+</ul></li>
+</ol></li>
+<li>名词的种类
+<ol class="org-ol">
+<li>Common Noun / Proper Noun
+<ul class="org-ul">
+<li><span class="underline">John</span> is a <span class="underline">student</span>.</li>
+<li id="Proper Noun">零冠词，首字母大写</li>
+</ul></li>
+<li>Common Noun
+<dl class="org-dl">
+<dt>类名词</dt><dd>book, table, house</dd>
+<dt>集体名词</dt><dd>family, crowd, army</dd>
+<dt>物质名词</dt><dd>milk, water, honey</dd>
+<dt>抽象名词</dt><dd>honesty, happiness, love</dd>
+</dl></li>
+<li>可数名词、不可数名词
+<dl class="org-dl">
+<dt>类名词和集体名词大多可数</dt><dd>a girl, a chair, a horse, a family, a tree, an army</dd>
+<dt>物质名词、动作和抽象名词大多不可数</dt><dd>milk, thinking, glass, anger, drinking, honesty</dd>
+</dl></li>
+<li>简单名词、复合名词
+<dl class="org-dl">
+<dt>简单名词</dt><dd>mother, opinion, society, vase, wine, work</dd>
+<dt>复合名词</dt><dd>raincoat, airman, sight-seeing, walking stick, self-consciousness, woman worker</dd>
+</dl></li>
+</ol></li>
+<li>可数名词与不可数名词的区分
+<ol class="org-ol">
+<li>可数 :: duty, hope, experience</li>
+<li>不可数 :: soap</li>
+<li>可数 :: Two coffees, please.</li>
+<li>不可数 :: Do you want tea or coffee?</li>
+</ol></li>
+<li>专有名词
+<ol class="org-ol">
+<li>人名</li>
+<li>地名</li>
+<li>时间名</li>
+<li>报刊名
+<ul class="org-ul">
+<li>Time</li>
+<li>Life</li>
+<li>the Economist</li>
+<li>the New Yorker</li>
+<li>the Guardian</li>
+<li>the Washington Post</li>
+</ul></li>
+<li>单位团体名多含普通名词，常带定冠词。如：
+<ul class="org-ul">
+<li>the Conservative Party</li>
+<li>the Central Intelligence Agency</li>
+<li>the Associated Press</li>
+<li>the British Museum</li>
+<li>the United Nations</li>
+<li>Congress</li>
+<li>Parliament</li>
+<li>Yale University</li>
+<li>Brown University</li>
+</ul></li>
+</ol></li>
+<li>复合名词
+<ol class="org-ol">
+<li>构成大致有九种
+<ol class="org-ol">
+<li>名词+名词 :: daylight, goldfish, handbag, nightdress, oil well, snowball, teapot, warhorse</li>
+<li>名词+动词 :: rainfall, haircut, book-keeping, horse-riding</li>
+<li>名词+副词 :: passer-by, hanger-on</li>
+<li>动词+名词 :: turntable, washing machine, punchcard, chewing gum, swimming-pool, writing desk</li>
+<li>动词+副词 :: break-in, make-up, take-off, warm-up</li>
+<li>形容词+名词 :: greenhouse, blackboard, shorthand, blueprint</li>
+<li>形容词+动词 :: dry-cleaning</li>
+<li>副词+名词 :: onlooker, bystander</li>
+<li>副词+动词 :: offset, outlet, income, downturn</li>
+</ol></li>
+<li>形式有三种(连字符无规律，需查字典)
+<ol class="org-ol">
+<li>两部分连写 :: bookshop, motorcycle, lipstick, earrings, yearbook, tablecloth, fireplace, typewriter</li>
+<li>两部分用连字符连接 :: ice-cream, baby-sitter, self-control, man-eater, drive-in, air-conditioning, summing-up, go-between</li>
+<li>两部分分写 :: post office, toilet paper, film star, bus stop, side road, credit card, data bank, talcum powder</li>
+</ol></li>
+<li>重音在第一个词上
+<ul class="org-ul">
+<li>a 'blackbird 以别于 a black 'bird</li>
+<li>the 'White House 以别于 the white house</li>
+<li>an 'English teacher "英语教师" 与 an English 'teacher 英国教师</li>
+</ul></li>
+</ol></li>
+<li>名词化(substantivization)
+<ul class="org-ul">
+<li>名词化的词类主要有下列四类
+<ol class="org-ol">
+<li>名词化的形容词 :: rich, dumb, poor, sick, blind, Scotch</li>
+<li>名词化的过去分词 :: wounded, accused, unknown, beloved, outcast, firstborn</li>
+<li>名词化的动名词 :: feeling, suffering, thinking, writing, printing, building</li>
+<li>名词化的基数词、序数词 :: on all <i><b>fours</b></i>, in his <i><b>sixties</b></i>, from the <i><b>first</b></i>, need a <i><b>fourth</b></i> in the game</li>
+</ol></li>
+<li>其他词类及短语用作名词
+<ul class="org-ul">
+<li>I am not a <i><b>somebody</b></i>, but a <i><b>nobody</b></i>.</li>
+<li>Did you enjoy your <i><b>swim</b></i>.</li>
+<li>Motion requires a <i><b>here</b></i> and a <i><b>there</b></i>. 运动需要从这一点到那一点。</li>
+<li>But me no <i><b>buts</b></i>. 你不要和我说”但是“、”但是“了。</li>
+</ul></li>
+<li>固定词组变成复合名词
+<ul class="org-ul">
+<li>to-do 吵闹</li>
+<li>touch-me-not 含羞草</li>
+<li>well-being 幸福，福利</li>
+<li>has-been 过时的人或物</li>
+<li>might-have-been 本可成功的人或本可做到的事</li>
+<li>right-about-face 180 度大转弯</li>
+</ul></li>
+</ul></li>
+<li>名词的功用
+<ol class="org-ol">
+<li>主语
+<ul class="org-ul">
+<li>The <i><b>boy</b></i> broke his arm yesterday.</li>
+<li>/*William wants to become a judge.</li>
+<li>A <i><b>watermelon</b></i> is much sweeter than a lemon.</li>
+</ul></li>
+<li>宾语
+<ul class="org-ul">
+<li>We lost our <i><b>way</b></i>.</li>
+<li>Jeanette rarely misses a football <i><b>game</b></i>.</li>
+<li>They've been working from <i><b>morning</b></i> to <i><b>night</b></i>.</li>
+</ul></li>
+<li>补语
+<ul class="org-ul">
+<li>Mark is considered a good <i><b>officer</b></i></li>
+<li>The parents christened their son <i><b>John</b></i>.</li>
+<li>The doctor is a <i><b>specialist</b></i> in diseases of heart.</li>
+</ul></li>
+<li>定语
+<ul class="org-ul">
+<li>The <i><b>air</b></i> conditioning works well.</li>
+<li>The <i><b>ship's</b></i> crew stood on deck.</li>
+<li>The <i><b>humanities</b></i> professor didn't give us any home-work tonight.</li>
+</ul></li>
+<li>同位语
+<ul class="org-ul">
+<li>Marilyn Monroe, a famous movie <i><b>star</b></i>, committed suicide.</li>
+<li>Influenza, a common <i><b>disease</b></i>, has no cure.</li>
+<li>Paul Jones, the distinguished art <i><b>critic</b></i>, died in his sleep last night.</li>
+</ul></li>
+<li>状语
+<ul class="org-ul">
+<li>Wait a <i><b>moment</b></i>!</li>
+<li>The watch costs ten <i><b>pounds</b></i>.</li>
+<li>We must get together again some <i><b>day</b></i>.</li>
+</ul></li>
+<li>独立成分
+<ul class="org-ul">
+<li><i><b>Miss</b></i>, can you give me change for a dollar?</li>
+<li><i><b>Martha</b></i>, you look tired.</li>
+<li>Your <i><b>honour</b></i>, I found this man outside St. Andrew's church an hour ago.</li>
+</ul></li>
+</ol></li>
+</ol>
+</div>
+</li>
+<li><a id="org8e65871"></a>名词的数<br />
+<div class="outline-text-5" id="text-1-1-2-2">
+<ol class="org-ol">
+<li>数的含义和种类
+<ol class="org-ol">
+<li>单数(singular)表示”一“，复数表示”多于一“ :
+one half day, on day, one and a half days, two days, one or two days</li>
+<li>单形名词表示单数概念，复形名词表示复数概念，如：
+<ul class="org-ul">
+<li>The <i><b>pen</b></i> is mightier than the <i><b>sword</b></i>.</li>
+<li>Two <i><b>heads</b></i> are better than one.</li>
+</ul></li>
+<li>数的概念与数的形式不一致
+<ul class="org-ul">
+<li>Can <i><b>man</b></i> be free if <i><b>woman</b></i> is a slave? (单数形式表示复数）</li>
+<li>The <i><b>barracks</b></i> is quite new. (复数形式表示单数)</li>
+</ul></li>
+<li>规则复形名词-可数名词 :: dog - dogs, book - books</li>
+<li>不规则复形名词-可数名词 :: foot - feet, child - children</li>
+<li>不规则复形名词-通形名词 :: fish, sheep</li>
+<li>不规则复形名词-外来词 :: creterion - creteria, bureau - bureaux</li>
+<li>单形不变词-普通名词 :: butter, soap, courage</li>
+<li>单形不变词-专有名词 :: John, James</li>
+<li>复形不变词-普通名词 :: scissors, trousers, clothes, arms</li>
+<li>复形不变词-专有名词 :: The alps, the West indies</li>
+</ol></li>
+<li>名词的规则复数形式</li>
+</ol>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">构成方法</th>
+<th scope="col" class="org-left">读音</th>
+<th scope="col" class="org-left">例词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">在词尾加-s</td>
+<td class="org-left">1.在清辅音后读/s/</td>
+<td class="org-left">1.desk - desks</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">2.在浊辅音后读/z/</td>
+<td class="org-left">map - maps</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">boat - boats</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">lake - lakes</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">2.field - fields</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">dog - dogs</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">sea - seas</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">machine - machines</td>
+</tr>
+</tbody>
+</table>
+<ol class="org-ol">
+<li>名词的不规则复数形式</li>
+<li>不可数名词的数</li>
+<li>集体名词的数</li>
+<li>专有名词的数</li>
+<li>名词化的词的数</li>
+<li>复数名词的数</li>
+<li>无单形的复形名词的数</li>
+<li>某些名词单复形的比较</li>
+</ol>
+</div>
+</li>
+<li><a id="orge5b6ab2"></a>名词的格<br />
+<div class="outline-text-5" id="text-1-1-2-3">
+<ol class="org-ol">
+<li>格的含义和种类</li>
+<li>属格的形式</li>
+<li>'s 属格的构成方法</li>
+<li>'s 属格的其他用法</li>
+<li>'s 属格所修饰名词的省略</li>
+<li>'s 属格与通格的互用</li>
+<li>of 属格的用法</li>
+<li>属格的功能</li>
+<li>'s 属格与 of 属格的互用</li>
+<li>双重属格</li>
+</ol>
+</div>
+</li>
+<li><a id="org9583c13"></a>名词的性<br />
+<div class="outline-text-5" id="text-1-1-2-4">
+<ol class="org-ol">
+<li>性的含义和种类</li>
+<li>表人的名词的性</li>
+<li>表人的名词的双重性</li>
+<li>集体名词的性</li>
+<li>表高等动物名词的性</li>
+<li>表低等动物、植物和非生物的名词的性</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Zhong Wei</p>
+<p class="date">Created: 2017-10-08 Sun 09:39</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
