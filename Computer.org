@@ -41,6 +41,7 @@
   - [[#cat-create-file][cat create file]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
   - [[#ss-replace-netstat][ss replace netstat]]
+  - [[#ubuntu-reset-sudo-password][Ubuntu reset sudo password]]
   - [[#ubuntu-netplan][Ubuntu netplan]]
   - [[#ubuntu-server-install-virtualbox-guest-additions][Ubuntu Server Install Virtualbox Guest Additions]]
   - [[#ubuntu-guest-network-config-networkmanager1710][Ubuntu guest network config NetworkManager(<17.10)]]
@@ -954,6 +955,14 @@ digraph G {
     - ip link set DEVICE up
     - ip maddress (replace ipmaddr)
 ** ss replace netstat
+** Ubuntu reset sudo password
+    reboot press shift
+    select Advance ....
+    select recover ...
+    select root ...
+    mount -o rw,remount /
+    passwd zhongwei
+
 ** Ubuntu netplan
       [[file:./images/netplan_design_overview.png]]
     /etc/netplan/*.yaml 
