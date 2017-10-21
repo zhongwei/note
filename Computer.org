@@ -37,6 +37,7 @@
     - [[#plantuml][plantuml]]
     - [[#graphviz][graphviz]]
     - [[#registy-ui][Registy UI]]
+  - [[#kubernetes][Kubernetes]]
 - [[#linux-administration][Linux Administration]]
   - [[#cat-create-file][cat create file]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
@@ -942,6 +943,11 @@ digraph G {
               konradkleine/docker-registry-frontend:v2
       
       #+END_SRC
+** Kubernetes
+   - [[https://kubernetes.io/docs/getting-started-guides/scratch/][Creating a Custom Cluster from Scratch]]
+   - [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Binary downloads address]]
+     
+      
 * Linux Administration
 ** cat create file
    #+BEGIN_SRC shell
