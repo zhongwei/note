@@ -13,6 +13,7 @@
     - [[#nginx][nginx]]
     - [[#rabbitmq][RabbitMQ]]
     - [[#registry][registry]]
+    - [[#registry-ui][registry UI]]
     - [[#ctop][ctop]]
     - [[#tensorflow-notebook][Tensorflow notebook]]
     - [[#gogs][Gogs]]
@@ -37,8 +38,14 @@
     - [[#graphviz][graphviz]]
     - [[#registy-ui][Registy UI]]
 - [[#linux-administration][Linux Administration]]
+  - [[#cat-create-file][cat create file]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
   - [[#ss-replace-netstat][ss replace netstat]]
+  - [[#ubuntu-netplan][Ubuntu netplan]]
+  - [[#ubuntu-server-install-virtualbox-guest-additions][Ubuntu Server Install Virtualbox Guest Additions]]
+  - [[#ubuntu-guest-network-config-networkmanager1710][Ubuntu guest network config NetworkManager(<17.10)]]
+  - [[#ubuntu-guest-network-config-systemd-networkd1710][Ubuntu guest network config systemd-networkd(>=17.10)]]
+  - [[#ubuntu-locale][Ubuntu locale]]
   - [[#ubuntu-install-tools][Ubuntu install tools]]
     - [[#sudo-apt-install-terminator][sudo apt install terminator]]
     - [[#sudo-apt-install-curl][sudo apt install curl]]
@@ -46,7 +53,6 @@
   - [[#ubuntu-user-admin][Ubuntu user admin]]
   - [[#ubuntu-zsh-oh-my-zsh-powerline][Ubuntu ZSH OH-MY-ZSH Powerline]]
   - [[#ubuntu-zsh-syntax-highlighting][Ubuntu zsh-syntax-highlighting]]
-  - [[#ubuntu-guest-network-config][Ubuntu guest network config]]
 - [[#linux-programming][Linux Programming]]
 - [[#rust-language-programming][Rust Language Programming]]
   - [[#install][Install]]
@@ -120,7 +126,12 @@
       #+BEGIN_SRC shell
           docker run -d -p 5000:5000 --restart always --name registry registry
       #+END_SRC
-
+*** registry UI
+      #+BEGIN_SRC shell
+          docker run --name registry-ui -d  -e ENV_DOCKER_REGISTRY_HOST=9.197.10.243 \
+              -e ENV_DOCKER_REGISTRY_PORT=5000 \
+              -p 9100:80  konradkleine/docker-registry-frontend:v2
+      #+END_SRC
 *** ctop 
       #+BEGIN_SRC shell
           docker container run --rm -it --name=ctop \
@@ -308,7 +319,7 @@
 
       #+RESULTS:
       [[file:./images/file.png]]
-
+      
 
       #+PLOT:  type:grid map:t title:"org mode"
         | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -930,13 +941,80 @@ digraph G {
       
       #+END_SRC
 * Linux Administration
-  
+** cat create file
+   #+BEGIN_SRC shell
+       $ cat > filename << "EOF"
+         > auto lo
+         > .....
+         > EOF
+   #+END_SRC
 ** ip replace ifconfig
     - ip address show
     - ip link show
     - ip link set DEVICE up
     - ip maddress (replace ipmaddr)
 ** ss replace netstat
+** Ubuntu netplan
+      [[file:./images/netplan_design_overview.png]]
+    /etc/netplan/*.yaml 
+    During early boot it then generates backend specific configuration files in /run
+    Support: NetworkManager and systemd-networkd
+    - netplan generate: Use /etc/netplan to generate the required configuration for the renderers.
+    - netplan apply: Apply all configuration for the renderers, restarting them as necessary.
+    - netplan ifupdown-migrate: Attempt to generate an equivalent configuration to what is specified in /etc/network/interfaces.
+** Ubuntu Server Install Virtualbox Guest Additions
+     #+BEGIN_SRC shell
+         Insert Guest Additions CD Images ...
+         sudo mount /dev/cdrom /media/cdrom
+         sudo /media/cdrom/VBoxLinuxAdditions.run 
+     #+END_SRC
+** Ubuntu guest network config NetworkManager(<17.10)
+   /usr/lib/systemd/network <  /etc/systemd/network
+   ip link
+   virtualbox network config: Adapter 1 - Host-only Adapter, Adapter 2 - NAT
+   ls /sys/class/net
+   /etc/network/intferfaces
+   # interfaces(5) file used by ifup(8) and ifdown(8)
+    auto lo
+    iface lo inet loopback
+
+    auto enp0s3
+    iface enp0s3 inet dhcp
+    
+    auto enp0s8
+    iface enp0s8 inet static
+    address 192.168.99.100
+    netmask 255.255.255.0
+
+** Ubuntu guest network config systemd-networkd(>=17.10)
+   man 5 systemd.network
+   /usr/lib/systemd/network < /run/systemd/network <  /etc/systemd/network
+   ip link
+   virtualbox network config: Adapter 1 - Host-only Adapter, Adapter 2 - NAT
+   ls /sys/class/net
+   /etc/network/intferfaces
+   # interfaces(5) file used by ifup(8) and ifdown(8)
+    auto lo
+    iface lo inet loopback
+
+    auto enp0s3
+    iface enp0s3 inet dhcp
+    
+    auto enp0s8
+    iface enp0s8 inet static
+    address 192.168.99.100
+    netmask 255.255.255.0
+
+** Ubuntu locale
+     #+BEGIN_SRC shell
+         locale
+         sudo vi /etc/default/locale
+         #LANG="zh_CN.UTF-8"
+         #LANGUAGE="zh_CN:zh"
+         LANG="en_US.UTF-8"
+         LANGUAGE="en_US:en"
+     
+     #+END_SRC
 ** Ubuntu install tools
 *** sudo apt install terminator
 *** sudo apt install curl
@@ -1008,20 +1086,6 @@ digraph G {
       1. sudo apt install zsh-syntax-highlighting
       2. #add end of .zshrc
       3. source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-** Ubuntu guest network config
-   virtualbox network config: Adapter 1 - Host-only Adapter, Adapter 2 - NAT
-   /etc/network/intferfaces
-   # interfaces(5) file used by ifup(8) and ifdown(8)
-    auto lo
-    iface lo inet loopback
-
-    auto enp0s3
-    iface enp0s3 inet static
-    address 192.168.99.100
-    netmask 255.255.255.0
-
-    auto enp0s8
-    iface enp0s8 inet dhcp
 * Linux Programming
 * Rust Language Programming
 ** Install
