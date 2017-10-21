@@ -993,6 +993,7 @@ digraph G {
 ** Ubuntu Docker 
      #+BEGIN_SRC shell
          wget https://download.docker.com/linux/ubuntu/dists/zesty/pool/stable/amd64/docker-ce.xxxxx.deb
+         sudo apt install libltdl7
          sudo dpkg -i /path/to/docker-ce.xxxxx.deb
      #+END_SRC
 ** Ubuntu guest network config NetworkManager(<17.10)
