@@ -945,11 +945,10 @@ digraph G {
       #+END_SRC
 ** Kubernetes
    - [[https://github.com/rootsongjc/kubernetes-handbook][Kubernetes 中文指南/实践手册]]
+   - [[https://github.com/kelseyhightower/kubernetes-the-hard-way][Bootstrap Kubernetes the hard way on Google Cloud Platform. No scripts.]]
    - [[https://kubernetes.io/docs/getting-started-guides/scratch/][Creating a Custom Cluster from Scratch]]
    - [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Binary downloads address]]
    - [[https://kubernetes.io/docs/admin/authentication/#creating-certificates/][Authenticating]]
-     
-      
 * Linux Administration
 ** cat create file
    #+BEGIN_SRC shell
