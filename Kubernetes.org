@@ -1,0 +1,277 @@
+** [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Kubernetes components Binary downloads address]]
+** create TLS certificate
+*** cfssl
+    1. [[https://pkg.cfssl.org/][Downloads]]
+    2. Mac :  [cfssl_darwin-amd64,cfssljson_darwin-amd64]
+    3. Linux : [cfssl_linux-amd64,cfssljson_linux-amd64]
+*** Create CA config template file
+    #+BEGIN_SRC shell
+     mkdir ssl
+     cd ssl
+     cfssl print-defaults config > config.json #generate config template
+     cfssl print-defaults csr > csr.json #generate config template
+    #+END_SRC 
+*** Create certificate authority
+**** Create ca config file ca-config.json
+**** Create certificate signing request file ca-csr.json
+**** Genterate CA cerficiface and private key
+      /media/sf_zhongwei/K8s/cfssl_linux-amd64 gencert -initca ca-csr.json | \
+      /media/sf_zhongwei/K8s/cfssljson_linux-amd64 -bare ca 
+**** Checkpoint
+      ca.csr ca-key.pem ca.pem
+*** Create kubernetes certificate authority
+**** Create certificate signing request file kubernetes-csr.json
+**** Genterate kubernetes certificate and private
+      /media/sf_zhongwei/K8s/cfssl_linux-amd64 gencert -ca=ca.pem -ca-key=ca-key.pem \
+      -config=ca-config.json -profile=kubernetes kubernetes-csr.json | \
+      /media/sf_zhongwei/K8s/cfssljson_linux-amd64 -bare kubernetes
+**** Checkpoint
+     kubernetes.csr kubernetes-key.pem kubernetes.pem
+*** Create admin certificate authority
+**** Create certificate signing request file admin-csr.json
+**** Genterate admin certificate and private
+     /media/sf_zhongwei/K8s/cfssl_linux-amd64 gencert -ca=ca.pem -ca-key=ca-key.pem \
+     -config=ca-config.json -profile=kubernetes admin-csr.json | \
+     /media/sf_zhongwei/K8s/cfssljson_linux-amd64 -bare admin
+**** Checkpoint
+     admin.csr admin-key.pem admin.pem
+*** Create kube-proxy certificate authority
+**** Create certificate signing request file kube-proxy-csr.json
+**** Genterate admin certificate and private
+     /media/sf_zhongwei/K8s/cfssl_linux-amd64 gencert -ca=ca.pem -ca-key=ca-key.pem \
+     -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | \
+     /media/sf_zhongwei/K8s/cfssljson_linux-amd64 -bare kube-proxy
+**** Checkpoint
+     kube-proxy.csr kube-proxy-key.pem kube-proxy.pem
+*** Verify certificate
+    openssl x509  -noout -text -in  kubernetes.pem
+    /media/sf_zhongwei/K8s/cfssl-certinfo_linux-amd64 -cert kubernetes.pem
+*** Distribute certificate
+    mkdir -p /etc/kubernetes/ssl
+    cp *.pem /etc/kubernetes/ssl
+** create kubeconfig file
+*** create TLS Bootstrapping Token
+    #+BEGIN_SRC shell
+      export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
+
+      cat > token.csv <<EOF
+      ${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,"system:kubelet-bootstrap"
+      EOF
+
+      cp token.csv /etc/kubernetes/
+    #+END_SRC
+*** create kubelet bootstrapping kubeconfig file
+    #+BEGIN_SRC shell
+      cd /etc/kubernetes
+      export KUBE_APISERVER="https://192.168.99.100:6443"
+
+      # setup cluster parameters
+      kubectl config set-cluster kubernetes \
+        --certificate-authority=/etc/kubernetes/ssl/ca.pem \
+        --embed-certs=true \
+        --server=${KUBE_APISERVER} \
+        --kubeconfig=bootstrap.kubeconfig
+
+      # setup client authority
+      kubectl config set-credentials kubelet-bootstrap \
+        --token=${BOOTSTRAP_TOKEN} \
+        --kubeconfig=bootstrap.kubeconfig
+
+      # setup context
+      kubectl config set-context default \
+        --cluster=kubernetes \
+        --user=kubelet-bootstrap \
+        --kubeconfig=bootstrap.kubeconfig
+
+      # setup default context
+      kubectl config use-context default --kubeconfig=bootstrap.kubeconfig
+
+    #+END_SRC
+*** create kube-proxy kubeconfig file
+    #+BEGIN_SRC shell
+      export KUBE_APISERVER="https://172.20.0.113:6443"
+      # setup cluster parameters
+      kubectl config set-cluster kubernetes \
+        --certificate-authority=/etc/kubernetes/ssl/ca.pem \
+        --embed-certs=true \
+        --server=${KUBE_APISERVER} \
+        --kubeconfig=kube-proxy.kubeconfig
+      # setup client authority
+      kubectl config set-credentials kube-proxy \
+        --client-certificate=/etc/kubernetes/ssl/kube-proxy.pem \
+        --client-key=/etc/kubernetes/ssl/kube-proxy-key.pem \
+        --embed-certs=true \
+        --kubeconfig=kube-proxy.kubeconfig
+      # setup context parameters
+      kubectl config set-context default \
+        --cluster=kubernetes \
+        --user=kube-proxy \
+        --kubeconfig=kube-proxy.kubeconfig
+      # setup default context
+      kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
+
+    #+END_SRC
+
+** create HA etcd cluster
+*** [[https://github.com/coreos/etcd/releases/][etcd downloads url]]
+*** etcd.service
+    /etc/systemd/system/etcd.service
+*** etcd.conf
+    /etc/etcd/etcd.conf
+*** start etcd cluster 
+    #+BEGIN_SRC shell
+      systemctl daemon-reload
+      systemctl enable etcd
+      systemctl start etcd
+      stemctl status etcd
+    #+END_SRC
+*** verify etcd cluster healthy
+    #+BEGIN_SRC shell
+      etcdctl \
+        --ca-file=/etc/kubernetes/ssl/ca.pem \
+        --cert-file=/etc/kubernetes/ssl/kubernetes.pem \
+        --key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
+        cluster-health
+    #+END_SRC
+** kubectl
+*** create kubectl kubeconfig file
+    #+BEGIN_SRC shell
+      export KUBE_APISERVER="https://192.168.99.100:6443"
+      # setup cluster parameters
+      kubectl config set-cluster kubernetes \
+        --certificate-authority=/etc/kubernetes/ssl/ca.pem \
+        --embed-certs=true \
+        --kubeconfig=kubectl.kubeconfig \
+        --server=${KUBE_APISERVER}
+      # setup client parameters
+      kubectl config set-credentials admin \
+        --client-certificate=/etc/kubernetes/ssl/admin.pem \
+        --embed-certs=true \
+        --kubeconfig=kubectl.kubeconfig \
+        --client-key=/etc/kubernetes/ssl/admin-key.pem
+      # setup contexg parameters
+      kubectl config set-context kubernetes \
+        --cluster=kubernetes \
+        --kubeconfig=kubectl.kubeconfig \
+        --user=admin
+      # setup default parameters
+      kubectl config use-context kubernetes \
+        --kubeconfig=kubectl.kubeconfig
+    #+END_SRC
+*** ~/kube/config
+      cp kubectl.kubeconfig ~/.kube/config
+
+** flannel
+*** Download Binary 
+    - https://github.com/coreos/flannel/releases
+    - flannel-vx.x.x-linux-amd64.tar.gz
+    - sudo mkdir -p /usr/libexec/flannel
+    - tar xgz -> /usr/libexec/flannel/mk-docker-opts.sh (match flanneld.server below)
+    - flanneld -> /usr/local/bin/flanneld
+    - /usr/local/bin/flanneld-start
+      #+BEGIN_SRC shell
+        #!/bin/sh
+        exec /usr/local/bin/flanneld \
+            -etcd-endpoints=${FLANNEL_ETCD_ENDPOINTS:-${FLANNEL_ETCD}} \
+            -etcd-prefix=${FLANNEL_ETCD_PREFIX:-${FLANNEL_ETCD_KEY}} \
+            "$@"
+      #+END_SRC
+*** flanneld.service 
+    /etc/systemd/system/flanneld.service 
+*** flanneld config
+    /etc/flannel/flanneld
+*** create network in etcd
+    #+BEGIN_SRC shell
+      sudo etcdctl --endpoints=https://192.168.99.100:2379,https://192.168.99.101:2379,https://192.168.99.102:2379 \
+          --ca-file=/etc/kubernetes/ssl/ca.pem \
+          --cert-file=/etc/kubernetes/ssl/kubernetes.pem \
+          --key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
+          mkdir /kube/network
+       
+      sudo etcdctl --endpoints=https://192.168.99.100:2379,https://192.168.99.101:2379,https://192.168.99.102:2379 \
+          --ca-file=/etc/kubernetes/ssl/ca.pem \
+          --cert-file=/etc/kubernetes/ssl/kubernetes.pem \
+          --key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
+          mk /kube/network/config '{"Network":"10.254.0.0/16","SubnetLen":24,"Backend":{"Type":"vxlan"}}'
+    #+END_SRC
+*** start flanneld
+    #+BEGIN_SRC shell
+      sudo systemctl enable flanneld
+      sudo systemctl start flanneld
+
+      cat /run/flannel/subent.env
+      cat /run/flannel/docker
+      ls /sys/class/net
+      ifconfig flannel.1
+    #+END_SRC
+*** config docker
+    #+BEGIN_SRC shell
+      source /run/flannel/subnet.env
+      sudo passwd root
+      su
+      #cat command create file without space in EOF line head
+      cat  > /etc/docker/daemon.json << "EOF"
+      {
+         "bip" : "$FLANNEL_SUBNET",
+         "ip-masq" : true,
+         "mtu" : 1450
+      }
+      EOF
+
+      sudo systemctl daemon-reload
+      sudo systemctl restart docker
+    #+END_SRC
+*** checkpoint
+    #+BEGIN_SRC shell
+      sudo etcdctl --endpoints=https://192.168.99.100:2379,https://192.168.99.101:2379,https://192.168.99.102:2379 \
+          --ca-file=/etc/kubernetes/ssl/ca.pem \
+          --cert-file=/etc/kubernetes/ssl/kubernetes.pem \
+          --key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
+          ls /kube/network/subnets
+
+      sudo etcdctl --endpoints=https://192.168.99.100:2379,https://192.168.99.101:2379,https://192.168.99.102:2379 \
+          --ca-file=/etc/kubernetes/ssl/ca.pem \
+          --cert-file=/etc/kubernetes/ssl/kubernetes.pem \
+          --key-file=/etc/kubernetes/ssl/kubernetes-key.pem \
+          get /kube/network/config
+    #+END_SRC
+** kubelet
+*** clusterrolebinding
+    #+BEGIN_SRC shell
+      cd /etc/kubernetes
+
+      kubectl create clusterrolebinding kubelet-bootstrap \
+          --clusterrole=system:node-bootstrapper \
+          --user=kubelet-bootstrap
+
+    #+END_SRC
+*** copy gcr image to docker
+    #+BEGIN_SRC shell
+      docker image pull gcr.io/google_containers/pause-amd64:3.0 
+      docker image tag gcr.io/google_containers/pause-amd64:3.0 zhongwei/k8s-pause
+      docker image push zhongwei/k8s-pause
+    #+END_SRC
+*** kubelet.service
+    /etc/systemd/system/kubelet.service
+*** kubelet config
+    /etc/kubernetes/kubelet
+    sudo mkdir /var/lib/kubelet
+    sudo cp ~/.kube/config /etc/kubernetes/kubelet.kubeconfig
+*** start
+    sudo systemctl daemon-reload
+    sudo systemctl start kubelet
+** kube-proxy
+*** kube-proxy.service
+    /etc/systemd/system/kube-proxy.service
+*** proxy config
+    /etc/kubernetes/proxy
+*** start
+    sudo systemctl daemon-reload
+    sudo systemctl start kube-proxy
+*** checkpoint
+    kubectl run nginx --replicas=2 --labels="run=load-balancer-example" --image=docker.io/nginx:alpine  --port=80
+    kubectl expose deployment nginx --type=NodePort --name=example-service
+    kubectl describe svc example-service
+    curl ${IP}
+    curl http://192.168.99.100:${NodePort}
+    
