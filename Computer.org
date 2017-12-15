@@ -7,6 +7,8 @@
     - [[#etcdockerdaemonjson][/etc/docker/daemon.json]]
     - [[#docker-container-update---restartalways-container-id][docker container update --restart=always <CONTAINER ID>]]
     - [[#config-in-ubuntu][Config in Ubuntu]]
+    - [[#mysql][MySQl]]
+    - [[#postgres][Postgres]]
     - [[#cadvisor][cAdvisor]]
     - [[#portainer][portainer]]
     - [[#redis][redis]]
@@ -38,6 +40,10 @@
     - [[#graphviz][graphviz]]
     - [[#registy-ui][Registy UI]]
   - [[#kubernetes][Kubernetes]]
+  - [[#kubernetes-install][Kubernetes Install]]
+    - [[#binary-downloads-address][Binary downloads address]]
+    - [[#cfssl][cfssl]]
+    - [[#create-ca-config-filename][Create CA config filename]]
 - [[#linux-administration][Linux Administration]]
   - [[#cat-create-file][cat create file]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
@@ -84,7 +90,14 @@
           sudo systemctl daemon-reload
           sudo systemctl restart docker
       #+END_SRC
-
+*** MySQl
+    #+BEGIN_SRC shell
+      docker container run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=demo -d mysql:8
+    #+END_SRC
+*** Postgres
+    #+BEGIN_SRC 
+      docker container run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres:alpine
+    #+END_SRC
 *** cAdvisor 
       #+BEGIN_SRC shell
           docker container run --name cAdvisor --restart always \
@@ -94,7 +107,6 @@
               -v /var/lib/docker/:/var/lib/docker:ro \
               -p 9191:8080 -d google/cadvisor
       #+END_SRC
-
 *** portainer 
       #+BEGIN_SRC shell
           docker container run --name portainer --restart always \
@@ -947,8 +959,21 @@ digraph G {
    - [[https://github.com/rootsongjc/kubernetes-handbook][Kubernetes 中文指南/实践手册]]
    - [[https://github.com/kelseyhightower/kubernetes-the-hard-way][Bootstrap Kubernetes the hard way on Google Cloud Platform. No scripts.]]
    - [[https://kubernetes.io/docs/getting-started-guides/scratch/][Creating a Custom Cluster from Scratch]]
-   - [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Binary downloads address]]
    - [[https://kubernetes.io/docs/admin/authentication/#creating-certificates/][Authenticating]]
+** Kubernetes Install
+*** [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Binary downloads address]]
+*** cfssl
+    1. [[https://pkg.cfssl.org/][Downloads]]
+    2. Mac :  [cfssl_darwin-amd64,cfssljson_darwin-amd64]
+    3. Linux : [cfssl_linux-amd64,cfssljson_linux-amd64]
+*** Create CA config filename
+    #+BEGIN_SRC shell
+     mkdir ssl
+     cd ssl
+     cfssl print-defaults config > config.json #generate config template
+     cfssl print-defaults csr > csr.json #generate config template
+    #+END_SRC 
+
 * Linux Administration
 ** cat create file
    #+BEGIN_SRC shell
@@ -1136,3 +1161,4 @@ digraph G {
     [source.ustc]
     registry = "git://mirrors.ustc.edu.cn/crates.io-index"
     # registry = "https://mirrors.ustc.edu.cn/crates.io-index"
+  
