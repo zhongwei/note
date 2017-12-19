@@ -23,6 +23,12 @@
     - [[#mongodb][MongoDB]]
     - [[#rocketchat][Rocket.chat]]
     - [[#consul][Consul]]
+    - [[#][]]
+    - [[#-1][]]
+    - [[#-2][]]
+    - [[#-3][]]
+    - [[#-4][]]
+    - [[#-5][]]
   - [[#vim][Vim]]
     - [[#vim-web-sites][Vim web sites]]
     - [[#normal-mode][Normal mode]]
@@ -44,6 +50,7 @@
     - [[#binary-downloads-address][Binary downloads address]]
     - [[#cfssl][cfssl]]
     - [[#create-ca-config-filename][Create CA config filename]]
+    - [[#monero][Monero]]
 - [[#linux-administration][Linux Administration]]
   - [[#cat-create-file][cat create file]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
@@ -186,6 +193,12 @@
           docker run -d --name=consul -e CONSUL_BIND_INTERFACE=eth0 \
               -p 8500:8500 -p 8300:8300 -p 8301:8301 consul
       #+END_SRC
+*** 
+*** 
+*** 
+*** 
+*** 
+*** 
 ** Vim
 *** Vim web sites
        - http://www.vimgolf.com
@@ -974,6 +987,15 @@ digraph G {
      cfssl print-defaults csr > csr.json #generate config template
     #+END_SRC 
 
+*** Monero
+      #+BEGIN_SRC shell
+          docker run --name test3 -itd -e ALGO_MODE='cryptonight' -e POOL_URL='mine.ppxxmr.com' \
+            -e POOL_USER='49FfWqnULAa4KADwzATcn3Guq7gdha2SNPmBD7W6FaWNDjgEgDDEE7bhFBxm7a9MpHRrgNUGYfE7h173GYsUUvJr9FjfMtX' \
+           -e POOL_PW='x' masterroshi/xmrig-alpine
+      #+END_SRC
+
+  
+    
 * Linux Administration
 ** cat create file
    #+BEGIN_SRC shell
