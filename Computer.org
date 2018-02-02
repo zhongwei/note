@@ -533,29 +533,29 @@
         [[file:./images/dot-sample7.png]]
 
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample8.png :cmdline -Kdot -Tpng
-        digraph g{
-            node [shape = record,height=.1]//我定义了我下面的样式;  
-            node0[label = "<f0> |<f1> G|<f2> "];  
-            //我是一个 node,我有三个属性，第二个的名字为 G，其他两个为空
-            node1[label = "<f0> |<f1> E|<f2> "];  
-            node2[label = "<f0> |<f1> B|<f2> "];  
-            node3[label = "<f0> |<f1> F|<f2> "];  
-            node4[label = "<f0> |<f1> R|<f2> "];  
-            node5[label = "<f0> |<f1> H|<f2> "];  
-            node6[label = "<f0> |<f1> Y|<f2> "];  
-            node7[label = "<f0> |<f1> A|<f2> "];  
-            node8[label = "<f0> |<f1> C|<f2> "];  
+          digraph g{
+              node [shape = record,height=.1]//我定义了我下面的样式;  
+              node0[label = "<f0> |<f1> G|<f2> "];  
+              //我是一个 node,我有三个属性，第二个的名字为 G，其他两个为空
+              node1[label = "<f0> |<f1> E|<f2> "];  
+              node2[label = "<f0> |<f1> B|<f2> "];  
+              node3[label = "<f0> |<f1> F|<f2> "];  
+              node4[label = "<f0> |<f1> R|<f2> "];  
+              node5[label = "<f0> |<f1> H|<f2> "];  
+              node6[label = "<f0> |<f1> Y|<f2> "];  
+              node7[label = "<f0> |<f1> A|<f2> "];  
+              node8[label = "<f0> |<f1> C|<f2> "];  
 
-            "node0": f2->"node4":f1;
-            //我的第三个属性连到 node4 的第二个属性
-            "node0": f0->"node1":f1;
-            "node1": f0->"node2":f1;
-            "node1": f2->"node3":f1;
-            "node2": f2->"node8":f1;
-            "node2": f0->"node7":f1;
-            "node4": f2->"node6":f1;
-            "node4": f0->"node5":f1;
-          }
+              "node0": f2->"node4":f1;
+              //我的第三个属性连到 node4 的第二个属性
+              "node0": f0->"node1":f1;
+              "node1": f0->"node2":f1;
+              "node1": f2->"node3":f1;
+              "node2": f2->"node8":f1;
+              "node2": f0->"node7":f1;
+              "node4": f2->"node6":f1;
+              "node4": f0->"node5":f1;
+            }
         #+END_SRC
 
         #+RESULTS:
@@ -596,40 +596,39 @@
         [[file:./images/dot-sample9.png]]
 
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample10.png :cmdline -Kdot -Tpng
-        digraph g {
-            subgraph cluster0 {
-              //我是一个子图，subgraph 定义了我，
-              node[style = filled, color = white];
-              //我之内的节点都是这种样式
-              style = filled;
-              //我的样式是填充
-              color = lightgrey;
-              //我的颜色
-              a0->a1->a2->a3;
-              label = "prcess #1"
-              //我的标题
-            }
+          digraph g {
+              subgraph cluster0 {
+                //我是一个子图，subgraph 定义了我，
+                node[style = filled, color = white];
+                //我之内的节点都是这种样式
+                style = filled;
+                //我的样式是填充
+                color = lightgrey;
+                //我的颜色
+                a0->a1->a2->a3;
+                label = "prcess #1"
+                //我的标题
+              }
 
-            subgraph cluster1 {
-              //我也是一个子图
-              node[style = filled];
-              b0->b1->b2->b3;
-              label = "process #2";
-              color = blue;
-            }
+              subgraph cluster1 {
+                //我也是一个子图
+                node[style = filled];
+                b0->b1->b2->b3;
+                label = "process #2";
+                color = blue;
+              }
 
-            //定义完毕之后，下面还是连接了
-            start->a0;
-            start->b0;
-            a1->b3;
-            b2->a3;
-            a3->end;
-            b3->end;
+              //定义完毕之后，下面还是连接了
+              start->a0;
+              start->b0;
+              a1->b3;
+              b2->a3;
+              a3->end;
+              b3->end;
 
-            start[shape=Mdiamond];
-            end[shape=Msquare];
-        }
-
+              start[shape=Mdiamond];
+              end[shape=Msquare];
+          }
         #+END_SRC
 
         #+RESULTS:
@@ -707,184 +706,182 @@
         [[file:./images/dot-sample12.png]]
 
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample13.png :cmdline -Kdot -Tpng
-        digraph idp_modules{
- 
-  rankdir = TB;
-  fontname = "Microsoft YaHei";
-  fontsize = 12;
-  
-  node [ fontname = "Microsoft YaHei", fontsize = 12, shape = "record" ];
-  edge [ fontname = "Microsoft YaHei", fontsize = 12 ];
-  
-      subgraph cluster_sl{
-          label="IDP 支持层";
-          bgcolor="mintcream";
-          node [shape="Mrecord", color="skyblue", style="filled"];
-          network_mgr [label="网络管理器"];
-          log_mgr [label="日志管理器"];
-          module_mgr [label="模块管理器"];
-          conf_mgr [label="配置管理器"];
-          db_mgr [label="数据库管理器"];
-      };
-  
-      subgraph cluster_md{
-          label="可插拔模块集";
-          bgcolor="lightcyan";
-          node [color="chartreuse2", style="filled"];
-          mod_dev [label="开发支持模块"];
-          mod_dm [label="数据建模模块"];
-          mod_dp [label="部署发布模块"];
-      };
-  
-  mod_dp -> mod_dev [label="依赖..."];
-  mod_dp -> mod_dm [label="依赖..."];
-  mod_dp -> module_mgr [label="安装...", color="yellowgreen", arrowhead="none"];
-  mod_dev -> mod_dm [label="依赖..."];
-  mod_dev -> module_mgr [label="安装...", color="yellowgreen", arrowhead="none"];
-  mod_dm -> module_mgr [label="安装...", color="yellowgreen", arrowhead="none"];
-}
+          digraph idp_modules{
+
+            rankdir = TB;
+            fontname = "Microsoft YaHei";
+            fontsize = 12;
+
+            node [ fontname = "Microsoft YaHei", fontsize = 12, shape = "record" ];
+            edge [ fontname = "Microsoft YaHei", fontsize = 12 ];
+
+                subgraph cluster_sl{
+                    label="IDP 支持层";
+                    bgcolor="mintcream";
+                    node [shape="Mrecord", color="skyblue", style="filled"];
+                    network_mgr [label="网络管理器"];
+                    log_mgr [label="日志管理器"];
+                    module_mgr [label="模块管理器"];
+                    conf_mgr [label="配置管理器"];
+                    db_mgr [label="数据库管理器"];
+                };
+
+                subgraph cluster_md{
+                    label="可插拔模块集";
+                    bgcolor="lightcyan";
+                    node [color="chartreuse2", style="filled"];
+                    mod_dev [label="开发支持模块"];
+                    mod_dm [label="数据建模模块"];
+                    mod_dp [label="部署发布模块"];
+                };
+
+            mod_dp -> mod_dev [label="依赖..."];
+            mod_dp -> mod_dm [label="依赖..."];
+            mod_dp -> module_mgr [label="安装...", color="yellowgreen", arrowhead="none"];
+            mod_dev -> mod_dm [label="依赖..."];
+            mod_dev -> module_mgr [label="安装...", color="yellowgreen", arrowhead="none"];
+            mod_dm -> module_mgr [label="安装...", color="yellowgreen", arrowhead="none"];
+          }
         #+END_SRC 
 
         #+RESULTS:
         [[file:./images/dot-sample13.png]]
         
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample14.png :cmdline -Kdot -Tpng
-        
-        digraph automata_0 {
-  size = "8.5, 11";
-  fontname = "Microsoft YaHei";
-  fontsize = 10;
-  
-  node [shape = circle, fontname = "Microsoft YaHei", fontsize = 10];
-  edge [fontname = "Microsoft YaHei", fontsize = 10];
-  
-  0 [ style = filled, color=lightgrey ];
-  2 [ shape = doublecircle ];
-  
-  0 -> 2 [ label = "a " ];
-  0 -> 1 [ label = "other " ];
-  1 -> 2 [ label = "a " ];
-  1 -> 1 [ label = "other " ];
-  2 -> 2 [ label = "a " ];
-  2 -> 1 [ label = "other " ];
-  
-  "Machine: a" [ shape = plaintext ];
-}
+          digraph automata_0 {
+            size = "8.5, 11";
+            fontname = "Microsoft YaHei";
+            fontsize = 10;
+
+            node [shape = circle, fontname = "Microsoft YaHei", fontsize = 10];
+            edge [fontname = "Microsoft YaHei", fontsize = 10];
+
+            0 [ style = filled, color=lightgrey ];
+            2 [ shape = doublecircle ];
+
+            0 -> 2 [ label = "a " ];
+            0 -> 1 [ label = "other " ];
+            1 -> 2 [ label = "a " ];
+            1 -> 1 [ label = "other " ];
+            2 -> 2 [ label = "a " ];
+            2 -> 1 [ label = "other " ];
+
+            "Machine: a" [ shape = plaintext ];
+          }
         #+END_SRC 
 
         #+RESULTS:
         [[file:./images/dot-sample14.png]]
         
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample15.png :cmdline -Kdot -Tpng
-       digraph module_lc{
-  rankdir=TB;
-  fontname = "Microsoft YaHei";
-  fontsize = 12;
-  
-  node [fontname = "Microsoft YaHei", fontsize = 12, shape = "Mrecord", color="skyblue", style="filled"];
-  edge [fontname = "Microsoft YaHei", fontsize = 12, color="darkgreen" ];
-  
-  installed [label="已安装状态"];
-  resolved [label="已就绪状态"];
-  uninstalled [label="已卸载状态"];
-  starting [label="正在启动"];
-  active [label="已激活(运行)状态"];
-  stopping [label="正在停止"];
-  start [label="", shape="circle", width=0.5, fixedsize=true, style="filled", color="black"];
-  
-  start -> installed [label="安装"];
-  installed -> uninstalled [label="卸载"];
-  installed -> resolved [label="准备"];
-  installed -> installed [label="更新"];
-  resolved -> installed [label="更新"];
-  resolved -> uninstalled [label="卸载"];
-  resolved -> starting [label="启动"];
-  starting -> active [label=""];
-  active -> stopping [label="停止"];
-  stopping -> resolved [label=""];
-} 
+          digraph module_lc{
+            rankdir=TB;
+            fontname = "Microsoft YaHei";
+            fontsize = 12;
+
+            node [fontname = "Microsoft YaHei", fontsize = 12, shape = "Mrecord", color="skyblue", style="filled"];
+            edge [fontname = "Microsoft YaHei", fontsize = 12, color="darkgreen" ];
+
+            installed [label="已安装状态"];
+            resolved [label="已就绪状态"];
+            uninstalled [label="已卸载状态"];
+            starting [label="正在启动"];
+            active [label="已激活(运行)状态"];
+            stopping [label="正在停止"];
+            start [label="", shape="circle", width=0.5, fixedsize=true, style="filled", color="black"];
+
+            start -> installed [label="安装"];
+            installed -> uninstalled [label="卸载"];
+            installed -> resolved [label="准备"];
+            installed -> installed [label="更新"];
+            resolved -> installed [label="更新"];
+            resolved -> uninstalled [label="卸载"];
+            resolved -> starting [label="启动"];
+            starting -> active [label=""];
+            active -> stopping [label="停止"];
+            stopping -> resolved [label=""];
+          } 
         #+END_SRC 
 
         #+RESULTS:
         [[file:./images/dot-sample15.png]]
         
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample16.png :cmdline -Kdot -Tpng
-        digraph ast{
-  fontname = "Microsoft YaHei";
-  fontsize = 10;
-  
-  node [shape = circle, fontname = "Microsoft YaHei", fontsize = 10];
-  edge [fontname = "Microsoft YaHei", fontsize = 10];
-  node [shape="plaintext"];
-  
-  mul [label="mul(*)"];
-  add [label="add(+)"];
-  
-  add -> 3
-  add -> 4;
-  mul -> add;
-  mul -> 5;
-}
+          digraph ast{
+            fontname = "Microsoft YaHei";
+            fontsize = 10;
 
+            node [shape = circle, fontname = "Microsoft YaHei", fontsize = 10];
+            edge [fontname = "Microsoft YaHei", fontsize = 10];
+            node [shape="plaintext"];
+
+            mul [label="mul(*)"];
+            add [label="add(+)"];
+
+            add -> 3
+            add -> 4;
+            mul -> add;
+            mul -> 5;
+          }
         #+END_SRC 
 
         #+RESULTS:
         [[file:./images/dot-sample16.png]]
         
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample17.png :cmdline -Kdot -Tpng
-digraph G{
-  
-  fontname = "Courier New"
-  fontsize = 10
-  
-  node [ fontname = "Courier New", fontsize = 10, shape = "record" ];
-  edge [ fontname = "Courier New", fontsize = 10 ];
-  
-  Animal [ label = "{Animal |+ name : String\l+ age : int\l|+ die() : void\l}" ];
-  
-      subgraph clusterAnimalImpl{
-          bgcolor="yellow"
-          Dog [ label = "{Dog||+ bark() : void\l}" ];
-          Cat [ label = "{Cat||+ meow() : void\l}" ];
-      };
-  
-  edge [ arrowhead = "empty" ];
-  
-  Dog->Animal;
-  Cat->Animal;
-  Dog->Cat [arrowhead="none", label="0..*"];
-}        
-        #+END_SRC 
+          digraph G{
 
-        #+RESULTS:
-        [[file:./images/dot-sample17.png]]
-        
-        #+BEGIN_SRC dot :exports both :file ./images/dot-sample18.png :cmdline -Kdot -Tpng
-       digraph finite_state_machine {
-  rankdir = LR;
-  size = "8,5"
-  
-  node [shape = doublecircle];
-  
-  LR_0 LR_3 LR_4 LR_8;
-  
-  node [shape = circle];
-  
-  LR_0 -> LR_2 [ label = "SS(B)" ];
-  LR_0 -> LR_1 [ label = "SS(S)" ];
-  LR_1 -> LR_3 [ label = "S($end)" ];
-  LR_2 -> LR_6 [ label = "SS(b)" ];
-  LR_2 -> LR_5 [ label = "SS(a)" ];
-  LR_2 -> LR_4 [ label = "S(A)" ];
-  LR_5 -> LR_7 [ label = "S(b)" ];
-  LR_5 -> LR_5 [ label = "S(a)" ];
-  LR_6 -> LR_6 [ label = "S(b)" ];
-  LR_6 -> LR_5 [ label = "S(a)" ];
-  LR_7 -> LR_8 [ label = "S(b)" ];
-  LR_7 -> LR_5 [ label = "S(a)" ];
-  LR_8 -> LR_6 [ label = "S(b)" ];
-  LR_8 -> LR_5 [ label = "S(a)" ];
-}
+            fontname = "Courier New"
+            fontsize = 10
+
+            node [ fontname = "Courier New", fontsize = 10, shape = "record" ];
+            edge [ fontname = "Courier New", fontsize = 10 ];
+
+            Animal [ label = "{Animal |+ name : String\l+ age : int\l|+ die() : void\l}" ];
+
+                subgraph clusterAnimalImpl{
+                    bgcolor="yellow"
+                    Dog [ label = "{Dog||+ bark() : void\l}" ];
+                    Cat [ label = "{Cat||+ meow() : void\l}" ];
+                };
+
+            edge [ arrowhead = "empty" ];
+
+            Dog->Animal;
+            Cat->Animal;
+            Dog->Cat [arrowhead="none", label="0..*"];
+          }        
+                  #+END_SRC 
+
+                  #+RESULTS:
+                  [[file:./images/dot-sample17.png]]
+
+                  #+BEGIN_SRC dot :exports both :file ./images/dot-sample18.png :cmdline -Kdot -Tpng
+                digraph finite_state_machine {
+            rankdir = LR;
+            size = "8,5"
+
+            node [shape = doublecircle];
+
+            LR_0 LR_3 LR_4 LR_8;
+
+            node [shape = circle];
+
+            LR_0 -> LR_2 [ label = "SS(B)" ];
+            LR_0 -> LR_1 [ label = "SS(S)" ];
+            LR_1 -> LR_3 [ label = "S($end)" ];
+            LR_2 -> LR_6 [ label = "SS(b)" ];
+            LR_2 -> LR_5 [ label = "SS(a)" ];
+            LR_2 -> LR_4 [ label = "S(A)" ];
+            LR_5 -> LR_7 [ label = "S(b)" ];
+            LR_5 -> LR_5 [ label = "S(a)" ];
+            LR_6 -> LR_6 [ label = "S(b)" ];
+            LR_6 -> LR_5 [ label = "S(a)" ];
+            LR_7 -> LR_8 [ label = "S(b)" ];
+            LR_7 -> LR_5 [ label = "S(a)" ];
+            LR_8 -> LR_6 [ label = "S(b)" ];
+            LR_8 -> LR_5 [ label = "S(a)" ];
+          }
  
         #+END_SRC 
 
@@ -892,39 +889,39 @@ digraph G{
         [[file:./images/dot-sample18.png]]
         
         #+BEGIN_SRC dot :exports both :file ./images/dot-sample19.png :cmdline -Kdot -Tpng
-digraph G {
-    rankdir="LR";
-    node[shape="point", width=0, height=0];
-    edge[arrowhead="none", style="dashed"]
- 
-    {
-        rank="same";
-        edge[style="solided"];
-        LC[shape="plaintext"];
-        LC -> step00 -> step01 -> step02 -> step03 -> step04 -> step05;
-    }
- 
-    {
-        rank="same";
-        edge[style="solided"];
-        Agency[shape="plaintext"];
-        Agency -> step10 -> step11 -> step12 -> step13 -> step14 -> step15;
-    }
- 
-    {
-        rank="same";
-        edge[style="solided"];
-        Agent[shape="plaintext"];
-        Agent -> step20 -> step21 -> step22 -> step23 -> step24 -> step25;
-    }
- 
-    step00 -> step10 [label="sends email new custumer", arrowhead="normal"];
-    step11 -> step01 [label="declines", arrowhead="normal"];
-    step12 -> step02 [label="accepts", arrowhead="normal"];
-    step13 -> step23 [label="forward to", arrowhead="normal"];
-    step24 -> step14;
-    step14 -> step04 [arrowhead="normal"];
-}        
+          digraph G {
+              rankdir="LR";
+              node[shape="point", width=0, height=0];
+              edge[arrowhead="none", style="dashed"]
+
+              {
+                  rank="same";
+                  edge[style="solided"];
+                  LC[shape="plaintext"];
+                  LC -> step00 -> step01 -> step02 -> step03 -> step04 -> step05;
+              }
+
+              {
+                  rank="same";
+                  edge[style="solided"];
+                  Agency[shape="plaintext"];
+                  Agency -> step10 -> step11 -> step12 -> step13 -> step14 -> step15;
+              }
+
+              {
+                  rank="same";
+                  edge[style="solided"];
+                  Agent[shape="plaintext"];
+                  Agent -> step20 -> step21 -> step22 -> step23 -> step24 -> step25;
+              }
+
+              step00 -> step10 [label="sends email new custumer", arrowhead="normal"];
+              step11 -> step01 [label="declines", arrowhead="normal"];
+              step12 -> step02 [label="accepts", arrowhead="normal"];
+              step13 -> step23 [label="forward to", arrowhead="normal"];
+              step24 -> step14;
+              step14 -> step04 [arrowhead="normal"];
+          }        
         #+END_SRC 
 
         #+RESULTS:
