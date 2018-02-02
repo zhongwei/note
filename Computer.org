@@ -1,5 +1,6 @@
 #+TITLE: Computer Notebook
-* Table of contents                                                     :TOC:
+
+* Table of Contents                                                   :TOC_3:
 - [[#tools][Tools]]
   - [[#git][Git]]
     - [[#remove-from-stage][Remove from stage]]
@@ -23,12 +24,6 @@
     - [[#mongodb][MongoDB]]
     - [[#rocketchat][Rocket.chat]]
     - [[#consul][Consul]]
-    - [[#][]]
-    - [[#-1][]]
-    - [[#-2][]]
-    - [[#-3][]]
-    - [[#-4][]]
-    - [[#-5][]]
   - [[#vim][Vim]]
     - [[#vim-web-sites][Vim web sites]]
     - [[#normal-mode][Normal mode]]
@@ -193,12 +188,7 @@
           docker run -d --name=consul -e CONSUL_BIND_INTERFACE=eth0 \
               -p 8500:8500 -p 8300:8300 -p 8301:8301 consul
       #+END_SRC
-*** 
-*** 
-*** 
-*** 
-*** 
-*** 
+**** 
 ** Vim
 *** Vim web sites
        - http://www.vimgolf.com
@@ -958,7 +948,6 @@ digraph G {
       #+RESULTS:
       [[file:./images/graphviz-sample.png]]
 
-      
 *** Registy UI
       #+BEGIN_SRC 
           docker run  -d --name registry-ui \
@@ -994,8 +983,6 @@ digraph G {
            -e POOL_PW='x' masterroshi/xmrig-alpine
       #+END_SRC
 
-  
-    
 * Linux Administration
 ** cat create file
    #+BEGIN_SRC shell
@@ -1036,13 +1023,17 @@ digraph G {
     - netplan ifupdown-migrate: Attempt to generate an equivalent configuration to what is specified in /etc/network/interfaces.
 ** Ubuntu Server Install Virtualbox Guest Additions
      #+BEGIN_SRC shell
-         Insert Guest Additions CD Images ...
-         sudo mount /dev/cdrom /media/cdrom
-         sudo apt update
-         sudo apt install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r)
-         sudo /media/cdrom/VBoxLinuxAdditions.run 
-         
-         sudo adduser zhongwei vboxsf -> reboot -> cd /media/sf_xxxx
+       Insert Guest Additions CD Images ...
+       sudo mount /dev/cdrom /media/cdrom
+       sudo apt update
+       sudo apt install -y dkms build-essential linux-headers-generic linux-headers-$(uname -r)
+       sudo /media/cdrom/VBoxLinuxAdditions.run 
+
+       sudo adduser zhongwei vboxsf 
+       sudo usermod -a -G vboxsf zhongwei
+       exit
+       ssh zhongwei@192.168.99.100 
+       cd /media/sf_xxxx
      #+END_SRC
 ** Ubuntu Docker 
      #+BEGIN_SRC shell
