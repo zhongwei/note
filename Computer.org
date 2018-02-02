@@ -229,13 +229,17 @@
        - http://www.vimgolf.com
        - http://www.Vimcasts.org
 *** Normal mode   
-       - <C-r> :: Redo
-       - aw, iw, ap :: A word, inner word, a paragraph
-       - * :: Serch word
-       - >G :: Indent from current to end of file (can't work in evil)
-       - I :: Insert text before first non-blank
-       - S :: Delete lines and start insert
-       - s = cl :: Delete left character and into insert mode
+    - @@html:<kbd>@@ Control @@html:</kbd>@@ @@html:<kbd>@@ r @@html:</kbd>@@ = redo
+    - @@html:<kbd>@@ a @@html:</kbd>@@ @@html:<kbd>@@ w @@html:</kbd>@@ = a word
+    - @@html:<kbd>@@ i @@html:</kbd>@@ @@html:<kbd>@@ w @@html:</kbd>@@ = inner word 
+    - @@html:<kbd>@@ a @@html:</kbd>@@ @@html:<kbd>@@ p @@html:</kbd>@@ = a paragraph
+    - @@html:<kbd>@@ * @@html:</kbd>@@ = search word
+    - @@html:<kbd>@@ > @@html:</kbd>@@ @@html:<kbd>@@ G @@html:</kbd>@@ = Indent from current to end of file (can't work in evil)
+    - @@html:<kbd>@@ I @@html:</kbd>@@ = Insert text before first non-blank
+    - @@html:<kbd>@@ S @@html:</kbd>@@ = Delete lines and start insert
+    - @@html:<kbd>@@ s @@html:</kbd>@@ = Delete left character and into insert mode
+    - @@html:<kbd>@@ c @@html:</kbd>@@ @@html:<kbd>@@ l @@html:</kbd>@@ = Delete left character and into insert mode
+    - @@html:<kbd>@@ S @@html:</kbd>@@ = 
        - <ESC> O replcace <CR> :: Split action to minor action
        - <C-a>, <C-x> :: Add,subtract num
        - g~<CR>, gU<CR>, gu<CR> :: Make text switch case,uppercase,lowercase
