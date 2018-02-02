@@ -24,6 +24,13 @@
     - [[#mongodb][MongoDB]]
     - [[#rocketchat][Rocket.chat]]
     - [[#consul][Consul]]
+    - [[#registy-ui][Registy UI]]
+  - [[#kubernetes][Kubernetes]]
+  - [[#kubernetes-install][Kubernetes Install]]
+    - [[#binary-downloads-address][Binary downloads address]]
+    - [[#cfssl][cfssl]]
+    - [[#create-ca-config-filename][Create CA config filename]]
+    - [[#monero][Monero]]
   - [[#vim][Vim]]
     - [[#vim-web-sites][Vim web sites]]
     - [[#normal-mode][Normal mode]]
@@ -39,13 +46,6 @@
     - [[#gnuplot][gnuplot]]
     - [[#plantuml][plantuml]]
     - [[#graphviz][graphviz]]
-    - [[#registy-ui][Registy UI]]
-  - [[#kubernetes][Kubernetes]]
-  - [[#kubernetes-install][Kubernetes Install]]
-    - [[#binary-downloads-address][Binary downloads address]]
-    - [[#cfssl][cfssl]]
-    - [[#create-ca-config-filename][Create CA config filename]]
-    - [[#monero][Monero]]
 - [[#linux-administration][Linux Administration]]
   - [[#cat-create-file][cat create file]]
   - [[#ip-replace-ifconfig][ip replace ifconfig]]
@@ -189,6 +189,41 @@
               -p 8500:8500 -p 8300:8300 -p 8301:8301 consul
       #+END_SRC
 **** 
+*** Registy UI
+      #+BEGIN_SRC 
+          docker run  -d --name registry-ui \
+              -e ENV_DOCKER_REGISTRY_HOST=9.123.230.132 \
+              -e ENV_DOCKER_REGISTRY_PORT=5000 \
+              -p 9100:80 \
+              konradkleine/docker-registry-frontend:v2
+      
+      #+END_SRC
+** Kubernetes
+   - [[https://github.com/rootsongjc/kubernetes-handbook][Kubernetes 中文指南/实践手册]]
+   - [[https://github.com/kelseyhightower/kubernetes-the-hard-way][Bootstrap Kubernetes the hard way on Google Cloud Platform. No scripts.]]
+   - [[https://kubernetes.io/docs/getting-started-guides/scratch/][Creating a Custom Cluster from Scratch]]
+   - [[https://kubernetes.io/docs/admin/authentication/#creating-certificates/][Authenticating]]
+** Kubernetes Install
+*** [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Binary downloads address]]
+*** cfssl
+    1. [[https://pkg.cfssl.org/][Downloads]]
+    2. Mac :  [cfssl_darwin-amd64,cfssljson_darwin-amd64]
+    3. Linux : [cfssl_linux-amd64,cfssljson_linux-amd64]
+*** Create CA config filename
+    #+BEGIN_SRC shell
+     mkdir ssl
+     cd ssl
+     cfssl print-defaults config > config.json #generate config template
+     cfssl print-defaults csr > csr.json #generate config template
+    #+END_SRC 
+
+*** Monero
+      #+BEGIN_SRC shell
+          docker run --name test3 -itd -e ALGO_MODE='cryptonight' -e POOL_URL='mine.ppxxmr.com' \
+            -e POOL_USER='49FfWqnULAa4KADwzATcn3Guq7gdha2SNPmBD7W6FaWNDjgEgDDEE7bhFBxm7a9MpHRrgNUGYfE7h173GYsUUvJr9FjfMtX' \
+           -e POOL_PW='x' masterroshi/xmrig-alpine
+      #+END_SRC
+
 ** Vim
 *** Vim web sites
        - http://www.vimgolf.com
@@ -355,7 +390,7 @@
         | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
         | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 *** plantuml
-      #+BEGIN_SRC plantuml :results graphics :file ./images/uml-sample.png :cmdline -charset UTF-8
+      #+BEGIN_SRC plantuml :results graphics :exports results :file ./images/uml-sample.png :cmdline -charset UTF-8
           title 时序图
 
           == 鉴权阶段 ==
@@ -384,7 +419,7 @@
       [[file:./images/uml-sample.png]]
 
 *** graphviz
-        #+BEGIN_SRC dot :file ./images/dot-sample1.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample1.png :cmdline -Kdot -Tpng
             graph sampe1 {
                 a[shape=polygon, sides=6, peripheries=2, color=lightblue, style=filled]
                 b[shape="none", width=0.01, height=0.01, image="images/chrome.png", label=""];
@@ -397,7 +432,7 @@
         [[file:./images/dot-sample1.png]]
 
         
-        #+BEGIN_SRC dot :file ./images/dot-sample2.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample2.png :cmdline -Kdot -Tpng
             digraph sample2 {
                 d[shape=box]
                 a->b->c
@@ -408,7 +443,7 @@
         #+RESULTS:
         [[file:./images/dot-sample2.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample3.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample3.png :cmdline -Kdot -Tpng
             digraph sample3 {
                 a->{b c};
                 c->e;
@@ -425,7 +460,7 @@
         #+RESULTS:
         [[file:./images/dot-sample3.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample4.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample4.png :cmdline -Kdot -Tpng
             digraph sample4 {
                 rankdir=LR
                 g[label="Github"]
@@ -444,7 +479,7 @@
         [[file:./images/dot-sample4.png]]
 
         
-          #+BEGIN_SRC dot :file ./images/dot-sample5.png :cmdline -Kdot -Tpng
+          #+BEGIN_SRC dot :exports results :file ./images/dot-sample5.png :cmdline -Kdot -Tpng
              digraph G{
                  size = "4, 4";//图片大小
                  main[shape=box];/*形状*/
@@ -465,7 +500,7 @@
         #+RESULTS:
         [[file:./images/dot-sample5.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample6.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample6.png :cmdline -Kdot -Tpng
            digraph G{
 	             size = "4, 4"
                a->b->c;
@@ -485,7 +520,7 @@
         #+RESULTS:
         [[file:./images/dot-sample6.png]]
    
-        #+BEGIN_SRC dot :file ./images/dot-sample7.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample7.png :cmdline -Kdot -Tpng
             digraph G{
                 // 我们可以用“n”,”ne”,”e”,””se”, “sw”,”w”,”nw”,
                 // 分别表示冲哪一个方向连接这个节点（图形）-“north, northeast……”
@@ -497,7 +532,7 @@
         #+RESULTS:
         [[file:./images/dot-sample7.png]]
 
-        #+BEGIN_SRC dot :file ./images/dot-sample8.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample8.png :cmdline -Kdot -Tpng
         digraph g{
             node [shape = record,height=.1]//我定义了我下面的样式;  
             node0[label = "<f0> |<f1> G|<f2> "];  
@@ -526,7 +561,7 @@
         #+RESULTS:
         [[file:./images/dot-sample8.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample9.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample9.png :cmdline -Kdot -Tpng
             digraph g {
                 nodesep = .05;
                 rankdir = LR;
@@ -560,7 +595,7 @@
         #+RESULTS:
         [[file:./images/dot-sample9.png]]
 
-        #+BEGIN_SRC dot :file ./images/dot-sample10.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample10.png :cmdline -Kdot -Tpng
         digraph g {
             subgraph cluster0 {
               //我是一个子图，subgraph 定义了我，
@@ -600,7 +635,7 @@
         #+RESULTS:
         [[file:./images/dot-sample10.png]]
 
-        #+BEGIN_SRC dot :file ./images/dot-sample11.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample11.png :cmdline -Kdot -Tpng
             digraph st2{
                 fontname = "Verdana";
                 fontsize = 10;
@@ -623,7 +658,7 @@
         #+RESULTS:
         [[file:./images/dot-sample11.png]]
 
-        #+BEGIN_SRC dot :file ./images/dot-sample12.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample12.png :cmdline -Kdot -Tpng
             digraph st{
                 fontname = "Verdana";
                 fontsize = 10;
@@ -671,7 +706,7 @@
         #+RESULTS:
         [[file:./images/dot-sample12.png]]
 
-        #+BEGIN_SRC dot :file ./images/dot-sample13.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample13.png :cmdline -Kdot -Tpng
         digraph idp_modules{
  
   rankdir = TB;
@@ -713,7 +748,7 @@
         #+RESULTS:
         [[file:./images/dot-sample13.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample14.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample14.png :cmdline -Kdot -Tpng
         
         digraph automata_0 {
   size = "8.5, 11";
@@ -740,7 +775,7 @@
         #+RESULTS:
         [[file:./images/dot-sample14.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample15.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample15.png :cmdline -Kdot -Tpng
        digraph module_lc{
   rankdir=TB;
   fontname = "Microsoft YaHei";
@@ -773,7 +808,7 @@
         #+RESULTS:
         [[file:./images/dot-sample15.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample16.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample16.png :cmdline -Kdot -Tpng
         digraph ast{
   fontname = "Microsoft YaHei";
   fontsize = 10;
@@ -796,7 +831,7 @@
         #+RESULTS:
         [[file:./images/dot-sample16.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample17.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample17.png :cmdline -Kdot -Tpng
 digraph G{
   
   fontname = "Courier New"
@@ -824,7 +859,7 @@ digraph G{
         #+RESULTS:
         [[file:./images/dot-sample17.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample18.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample18.png :cmdline -Kdot -Tpng
        digraph finite_state_machine {
   rankdir = LR;
   size = "8,5"
@@ -856,7 +891,7 @@ digraph G{
         #+RESULTS:
         [[file:./images/dot-sample18.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample19.png :cmdline -Kdot -Tpng
+        #+BEGIN_SRC dot :exports results :file ./images/dot-sample19.png :cmdline -Kdot -Tpng
 digraph G {
     rankdir="LR";
     node[shape="point", width=0, height=0];
@@ -895,15 +930,7 @@ digraph G {
         #+RESULTS:
         [[file:./images/dot-sample19.png]]
         
-        #+BEGIN_SRC dot :file ./images/dot-sample20.png :cmdline -Kdot -Tpng
-        
-        #+END_SRC 
-        
-        #+BEGIN_SRC dot :file ./images/dot-sample21.png :cmdline -Kdot -Tpng
-        
-        #+END_SRC 
-        
-      #+BEGIN_SRC dot :file ./images/graphviz-sample.png :cmdline -Kdot -Tpng
+      #+BEGIN_SRC dot :exports results :file ./images/graphviz-sample.png :cmdline -Kdot -Tpng
      
           digraph G {
             size="8,6"
@@ -947,41 +974,6 @@ digraph G {
       
       #+RESULTS:
       [[file:./images/graphviz-sample.png]]
-
-*** Registy UI
-      #+BEGIN_SRC 
-          docker run  -d --name registry-ui \
-              -e ENV_DOCKER_REGISTRY_HOST=9.123.230.132 \
-              -e ENV_DOCKER_REGISTRY_PORT=5000 \
-              -p 9100:80 \
-              konradkleine/docker-registry-frontend:v2
-      
-      #+END_SRC
-** Kubernetes
-   - [[https://github.com/rootsongjc/kubernetes-handbook][Kubernetes 中文指南/实践手册]]
-   - [[https://github.com/kelseyhightower/kubernetes-the-hard-way][Bootstrap Kubernetes the hard way on Google Cloud Platform. No scripts.]]
-   - [[https://kubernetes.io/docs/getting-started-guides/scratch/][Creating a Custom Cluster from Scratch]]
-   - [[https://kubernetes.io/docs/admin/authentication/#creating-certificates/][Authenticating]]
-** Kubernetes Install
-*** [[https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.8.md#downloads-for-v181][Binary downloads address]]
-*** cfssl
-    1. [[https://pkg.cfssl.org/][Downloads]]
-    2. Mac :  [cfssl_darwin-amd64,cfssljson_darwin-amd64]
-    3. Linux : [cfssl_linux-amd64,cfssljson_linux-amd64]
-*** Create CA config filename
-    #+BEGIN_SRC shell
-     mkdir ssl
-     cd ssl
-     cfssl print-defaults config > config.json #generate config template
-     cfssl print-defaults csr > csr.json #generate config template
-    #+END_SRC 
-
-*** Monero
-      #+BEGIN_SRC shell
-          docker run --name test3 -itd -e ALGO_MODE='cryptonight' -e POOL_URL='mine.ppxxmr.com' \
-            -e POOL_USER='49FfWqnULAa4KADwzATcn3Guq7gdha2SNPmBD7W6FaWNDjgEgDDEE7bhFBxm7a9MpHRrgNUGYfE7h173GYsUUvJr9FjfMtX' \
-           -e POOL_PW='x' masterroshi/xmrig-alpine
-      #+END_SRC
 
 * Linux Administration
 ** cat create file
