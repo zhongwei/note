@@ -344,9 +344,9 @@
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
 *** Generate graph
-       @@html:<kbd>@@ < @@html:</kbd>@@ @@html:<kbd>@@ s @@html:</kbd>@@ @@html:<kbd>@@ Tab @@html:</kbd>@@ ::  Generate #+BEGIN_SRC ....
-       @@html:<kbd>@@ , @@html:</kbd>@@ @@html:<kbd>@@ T @@html:</kbd>@@ @@html:<kbd>@@ i @@html:</kbd>@@ :: M-x org-toggle-inline-images
-       @@html:<kbd>@@ , @@html:</kbd>@@ @@html:<kbd>@@ , @@html:</kbd>@@ :: @@html:<kbd>@@ SPC @@html:</kbd>@@ @@html:<kbd>@@ m @@html:</kbd>@@ @@html:<kbd>@@ , @@html:</kbd>@@ 
+     - @@html:<kbd>@@ < @@html:</kbd>@@ @@html:<kbd>@@ s @@html:</kbd>@@ @@html:<kbd>@@ Tab @@html:</kbd>@@ ::  Generate #+BEGIN_SRC ....
+     - @@html:<kbd>@@ , @@html:</kbd>@@ @@html:<kbd>@@ T @@html:</kbd>@@ @@html:<kbd>@@ i @@html:</kbd>@@ :: M-x org-toggle-inline-images
+     - @@html:<kbd>@@ , @@html:</kbd>@@ @@html:<kbd>@@ , @@html:</kbd>@@ :: @@html:<kbd>@@ SPC @@html:</kbd>@@ @@html:<kbd>@@ m @@html:</kbd>@@ @@html:<kbd>@@ , @@html:</kbd>@@ 
 *** gnuplot
        #+BEGIN_SRC gnuplot :exports both :file ./images/file.png
           reset
