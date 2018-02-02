@@ -344,9 +344,10 @@
        - :edit $MYVIMRC :: Edit .vimrc
 ** Spacemacs
 *** Generate graph
+       @@html:<kbd>@@ < @@html:</kbd>@@ @@html:<kbd>@@ s @@html:</kbd>@@ @@html:<kbd>@@ Tab @@html:</kbd>@@ ::  Generate #+BEGIN_SRC ....
       #+BEGIN_SRC shell
-          ,Ti :: M-x org-toggle-inline-images
-          ,,  :: SPC m ,
+        ,Ti :: M-x org-toggle-inline-images
+        ,,  :: SPC m ,
       #+END_SRC
 *** gnuplot
        #+BEGIN_SRC gnuplot :exports both :file ./images/file.png
