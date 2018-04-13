@@ -159,7 +159,7 @@
       #+BEGIN_SRC shell
           docker container run --name tensorflow-notebook  -p 8888:8888 -d \
               -v ~/Jupyter:/home/jovyan \
-              jupyter/tensorflow-notebook
+              jupyter/tensorflow-notebook  start.sh jupyter lab
       #+END_SRC
 *** Gogs
       #+BEGIN_SRC shell
